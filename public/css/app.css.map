@@ -1,0 +1,1 @@
+{"version":3,"sources":["foms/forms.scss"],"names":[],"mappings":"AAAA;EACE,uBAAsB,EADlB","file":"app.css","sourcesContent":["form {\n  display: inline-block;\n}"],"sourceRoot":"/source/"}
