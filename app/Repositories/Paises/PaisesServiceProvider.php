@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace App\Repositories\Paises ;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class PaisesServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -23,10 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
-        if ($this->app->isLocal()) {
-            $this->app->register('Kurt\Repoist\RepoistServiceProvider');
-        }
-
+    $this->app->bind('App\Repositories\Paises\PaisesRepositoryInterface','App\Repositories\Paises\PaisesRepository');
     }
 }

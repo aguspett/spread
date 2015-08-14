@@ -14,12 +14,12 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header">
-    <h1> {{ $provincias[0]->pais    ->name}}
-      {!! Form::open(['method' => 'GET','action' => array('paisesController@edit', $provincias[0]->pais->id) ]) !!}
+    <h1> {{ $pais->name}}
+      {!! Form::open(['method' => 'GET','action' => array('paisesController@edit', $pais->id) ]) !!}
         <button type="submit"class="btn btn-success pull-right">Editar</button>
         {!! Form::close() !!} </h1>
                 </div>
-    @foreach ($provincias as $provincia)
+    @foreach ($pais->provincias as $provincia)
         <ul class="list-group">
             <li class="list-group-item">
                 {{ $provincia->name }}

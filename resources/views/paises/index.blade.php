@@ -18,29 +18,23 @@
             </div><!-- /.box-header -->
             <div class="box-body">
 
-                @foreach ($paises as $pais)
-
-        <ul class="list-group">
-            <li class="list-group-item">
-                {{ $pais->name }}
-                <div class=" btn-group pull-right">
-
-                {!! Form::model($pais,['method' => 'DELETE', 'action' => ['paisesController@destroy', $pais->id]  ] ) !!}
-                <button type="submit"class="btn btn-warning">Elim</button>
-                {!! Form::close() !!}
-
-                {!! Form::open(['method' => 'GET', 'action'=> ['paisesController@edit', $pais->id] ]) !!}
-                <button type="submit"class="btn btn-success">Editar</button>
-                {!! Form::close() !!}
-                    </div>
-            </li>
-        </ul>
-
-    @endforeach
+           @include('paises.partial.paisSelect');
+                <button type="button" class="btn btn-success"> </button>
             </div><!-- /.box-body -->
             <div class="box-footer clearfix no-border">
 
                 </div>
             </div>
     </section>
+@stop
+@section('footer')
+    <script>
+        $('#paises').onclick(function(){
+            var value = this.value;
+            $ajax(){
+                method:'GET'
+
+            }
+        });
+    </script>
 @stop

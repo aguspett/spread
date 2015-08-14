@@ -20,7 +20,9 @@ Route::controllers([
 Route::get('/home',function (){
     return view('home');
 });
+
 Route::resource('paises','paisesController');
+Route::post('paises/show','paisesController@show');
 Route::post('provincias/pais','provinciasController@indexCountry');
 Route::resource('provincias','provinciasController');
 

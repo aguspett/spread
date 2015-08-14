@@ -6,7 +6,587 @@
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="spread_1"/>
     <schema name="" catalog="spread_electric"/>
+    <table name="act_img" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_act" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_img" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="act_img_ibfk_1" columns="id_act" ref-table="activos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_act_img_activos_id" unique="false" columns="id_act"/>
+      <index name="FK_act_img_imagenes_id" unique="false" columns="id_img"/>
+    </table>
+    <table name="activos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cod" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sectores_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="activos_ibfk_1" columns="sectores_id" ref-table="sectores" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="act_img_ibfk_1" table="act_img" schema="" catalog="spread_1" columns="id_act"/>
+      <exported-key name="eventos_ibfk_1" table="eventos" schema="" catalog="spread_1" columns="act"/>
+      <exported-key name="ot_has_activos_ibfk_1" table="ot_has_activos" schema="" catalog="spread_1" columns="activos_id"/>
+      <exported-key name="tareas_has_pauetes_has_sectores_has_activos_ibfk_1" table="tareas_has_pauetes_has_sectores_has_activos" schema="" catalog="spread_1" columns="activos_id"/>
+      <index name="fk_activos_sectores1_idx" unique="false" columns="sectores_id"/>
+    </table>
+    <table name="archivos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="url" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="presupuestos_has_archivos_ibfk_1" table="presupuestos_has_archivos" schema="" catalog="spread_1" columns="archivos_id"/>
+    </table>
+    <table name="chekes" schema="" catalog="spread_1" type="TABLE">
+      <column name="idchekes" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="num" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="bco" sqlType="VARCHAR" precision="250" scale="0" nullable="true" jdbcType="12"/>
+      <column name="venc" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="pagos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idchekes"/>
+      <foreign-key name="chekes_ibfk_1" columns="pagos_id" ref-table="pagos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_chekes_pagos1_idx" unique="false" columns="pagos_id"/>
+    </table>
+    <table name="clientes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fisc" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dir_com" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="id_localidad_com" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="iva_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="clientes_ibfk_1" columns="iva_id" ref-table="iva" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="indicadores_ibfk_1" table="indicadores" schema="" catalog="spread_1" columns="id_cli"/>
+      <exported-key name="locacion_ibfk_1" table="locacion" schema="" catalog="spread_1" columns="clientes_id"/>
+      <exported-key name="oc_ibfk_1" table="oc" schema="" catalog="spread_1" columns="clientes_id"/>
+      <exported-key name="reportes_ibfk_1" table="reportes" schema="" catalog="spread_1" columns="clientes_id"/>
+      <exported-key name="usuarios_has_clientes_ibfk_1" table="usuarios_has_clientes" schema="" catalog="spread_1" columns="clientes_id"/>
+      <index name="fk_clientes_iva1_idx" unique="false" columns="iva_id"/>
+      <index name="fk_clientes_localidades1_idx" unique="false" columns="id_localidad_com"/>
+    </table>
+    <table name="coments" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_usr" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="com" sqlType="VARCHAR" precision="500" scale="0" nullable="false" jdbcType="12"/>
+      <column name="time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="FK_coments_usuarios_id" unique="false" columns="id_usr"/>
+    </table>
+    <table name="departamentos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="provincia_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nombre" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="ev_ot" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="eventos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ot_idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="ev_ot_ibfk_2" columns="ot_idot" ref-table="ot" ref-schema="" ref-catalog="spread_1" ref-columns="idot" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="ev_ot_ibfk_1" columns="eventos_id" ref-table="eventos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_ev_ot_eventos1_idx" unique="false" columns="eventos_id"/>
+      <index name="fk_ev_ot_ot1_idx" unique="false" columns="ot_idot"/>
+    </table>
+    <table name="eventos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tit" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fec" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="act" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="tar" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="obs" sqlType="VARCHAR" precision="400" scale="0" nullable="true" jdbcType="12"/>
+      <column name="est" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="eventos_ibfk_2" columns="tar" ref-table="tareas" ref-schema="" ref-catalog="spread_1" ref-columns="idtareas" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="eventos_ibfk_1" columns="act" ref-table="activos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="ev_ot_ibfk_1" table="ev_ot" schema="" catalog="spread_1" columns="eventos_id"/>
+      <exported-key name="eventos_has_mediciones_ibfk_1" table="eventos_has_mediciones" schema="" catalog="spread_1" columns="eventos_id"/>
+      <exported-key name="eventos_has_seguimientos_ibfk_1" table="eventos_has_seguimientos" schema="" catalog="spread_1" columns="eventos_id"/>
+      <exported-key name="reparaciones_ibfk_1" table="reparaciones" schema="" catalog="spread_1" columns="eventos_id"/>
+      <index name="fk_eventos_activos1_idx" unique="false" columns="act"/>
+      <index name="fk_eventos_tareas1_idx" unique="false" columns="tar"/>
+    </table>
+    <table name="eventos_has_mediciones" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="eventos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mediciones_idmediciones" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="eventos_has_mediciones_ibfk_2" columns="mediciones_idmediciones" ref-table="mediciones" ref-schema="" ref-catalog="spread_1" ref-columns="idmediciones" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="eventos_has_mediciones_ibfk_1" columns="eventos_id" ref-table="eventos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_eventos_has_mediciones_eventos1_idx" unique="false" columns="eventos_id"/>
+      <index name="fk_eventos_has_mediciones_mediciones1_idx" unique="false" columns="mediciones_idmediciones"/>
+    </table>
+    <table name="eventos_has_seguimientos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="eventos_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="seguimientos_idseguimientos" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="eventos_has_seguimientos_ibfk_2" columns="seguimientos_idseguimientos" ref-table="seguimientos" ref-schema="" ref-catalog="spread_1" ref-columns="idseguimientos" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="eventos_has_seguimientos_ibfk_1" columns="eventos_id" ref-table="eventos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_eventos_has_seguimientos_eventos1_idx" unique="false" columns="eventos_id"/>
+      <index name="fk_eventos_has_seguimientos_seguimientos1_idx" unique="false" columns="seguimientos_idseguimientos"/>
+    </table>
+    <table name="facturas" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fecha" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="num" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="facturas_has_reportes_ibfk_1" table="facturas_has_reportes" schema="" catalog="spread_1" columns="facturas_id"/>
+      <exported-key name="pagos_has_facturas_ibfk_1" table="pagos_has_facturas" schema="" catalog="spread_1" columns="facturas_id"/>
+    </table>
+    <table name="facturas_has_reportes" schema="" catalog="spread_1" type="TABLE">
+      <column name="facturas_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="reportes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="facturas_id,reportes_id"/>
+      <foreign-key name="facturas_has_reportes_ibfk_2" columns="reportes_id" ref-table="reportes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="facturas_has_reportes_ibfk_1" columns="facturas_id" ref-table="facturas" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_facturas_has_reportes_facturas1_idx" unique="false" columns="facturas_id"/>
+      <index name="fk_facturas_has_reportes_reportes1_idx" unique="false" columns="reportes_id"/>
+    </table>
+    <table name="imagenes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="url" sqlType="VARCHAR" precision="400" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="indicadores" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_cli" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nom" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="indicadores_ibfk_1" columns="id_cli" ref-table="clientes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="rep_ind_ibfk_1" table="rep_ind" schema="" catalog="spread_1" columns="indicadores_id"/>
+      <index name="FK_indicadores_clientes_id" unique="false" columns="id_cli"/>
+    </table>
+    <table name="iva" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="den" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pors" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="clientes_ibfk_1" table="clientes" schema="" catalog="spread_1" columns="iva_id"/>
+    </table>
+    <table name="locacion" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="dir" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="id_img" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="clientes_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="localidades_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="locacion_ibfk_1" columns="clientes_id" ref-table="clientes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="pauetes_ibfk_1" table="pauetes" schema="" catalog="spread_1" columns="locacion_id"/>
+      <exported-key name="sectores_ibfk_2" table="sectores" schema="" catalog="spread_1" columns="id_locacion"/>
+      <index name="fk_locacion_clientes1_idx" unique="false" columns="clientes_id"/>
+      <index name="FK_locacion_imagenes_id" unique="false" columns="id_img"/>
+      <index name="fk_locacion_localidades1_idx" unique="false" columns="localidades_id"/>
+    </table>
+    <table name="locacion_has_presupuestos" schema="" catalog="spread_1" type="TABLE">
+      <column name="locacion_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="presupuestos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="locacion_id,presupuestos_id"/>
+      <foreign-key name="locacion_has_presupuestos_ibfk_1" columns="presupuestos_id" ref-table="presupuestos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_locacion_has_presupuestos_locacion1_idx" unique="false" columns="locacion_id"/>
+      <index name="fk_locacion_has_presupuestos_presupuestos1_idx" unique="false" columns="presupuestos_id"/>
+    </table>
+    <table name="localidades" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="departamento_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nombre" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="log_sys" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_freec" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="id_crerated" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="mediciones" schema="" catalog="spread_1" type="TABLE">
+      <column name="idmediciones" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="val" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idmediciones"/>
+      <exported-key name="eventos_has_mediciones_ibfk_2" table="eventos_has_mediciones" schema="" catalog="spread_1" columns="mediciones_idmediciones"/>
+    </table>
+    <table name="oc" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="enc" sqlType="VARCHAR" precision="300" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ini" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="fin" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="num" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="descr" sqlType="VARCHAR" precision="300" scale="0" nullable="true" jdbcType="12"/>
+      <column name="clientes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="oc_ibfk_1" columns="clientes_id" ref-table="clientes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="oc_has_loc_ibfk_1" table="oc_has_loc" schema="" catalog="spread_1" columns="oc_id"/>
+      <exported-key name="oc_has_reportes_ibfk_1" table="oc_has_reportes" schema="" catalog="spread_1" columns="oc_id"/>
+      <exported-key name="rep_frec_ibfk_1" table="rep_frec" schema="" catalog="spread_1" columns="id_oc"/>
+      <index name="fk_oc_clientes1_idx" unique="false" columns="clientes_id"/>
+    </table>
+    <table name="oc_has_loc" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="oc_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="locacion_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="oc_has_loc_ibfk_1" columns="oc_id" ref-table="oc" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="ocloc_has_paquetes_ibfk_1" table="ocloc_has_paquetes" schema="" catalog="spread_1" columns="oc_has_loc_id"/>
+      <index name="fk_oc_has_locacion_locacion1_idx" unique="false" columns="locacion_id"/>
+      <index name="fk_oc_has_locacion_oc1_idx" unique="false" columns="oc_id"/>
+    </table>
+    <table name="oc_has_reportes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="oc_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="reportes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="oc_has_reportes_ibfk_2" columns="reportes_id" ref-table="reportes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="oc_has_reportes_ibfk_1" columns="oc_id" ref-table="oc" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_oc_has_reportes_oc1_idx" unique="false" columns="oc_id"/>
+      <index name="fk_oc_has_reportes_reportes1_idx" unique="false" columns="reportes_id"/>
+    </table>
+    <table name="ocloc_has_paquetes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="oc_has_loc_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pauetes_idpauetes" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="ocloc_has_paquetes_ibfk_2" columns="pauetes_idpauetes" ref-table="pauetes" ref-schema="" ref-catalog="spread_1" ref-columns="idpauetes" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="ocloc_has_paquetes_ibfk_1" columns="oc_has_loc_id" ref-table="oc_has_loc" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_oc_has_loc_has_pauetes_oc_has_loc1_idx" unique="false" columns="oc_has_loc_id"/>
+      <index name="fk_oc_has_loc_has_pauetes_pauetes1_idx" unique="false" columns="pauetes_idpauetes"/>
+    </table>
+    <table name="ordenes_servicio" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="fech" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="send" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="view" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="obs" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="os_ot_ibfk_1" table="os_ot" schema="" catalog="spread_1" columns="ordenes_servicio_id"/>
+    </table>
+    <table name="os_ot" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ordenes_servicio_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ot_idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="os_ot_ibfk_2" columns="ot_idot" ref-table="ot" ref-schema="" ref-catalog="spread_1" ref-columns="idot" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="os_ot_ibfk_1" columns="ordenes_servicio_id" ref-table="ordenes_servicio" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_os_ot_ordenes_servicio1_idx" unique="false" columns="ordenes_servicio_id"/>
+      <index name="fk_os_ot_ot1_idx" unique="false" columns="ot_idot"/>
+    </table>
+    <table name="ot" schema="" catalog="spread_1" type="TABLE">
+      <column name="idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ini" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="fin" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="obs" sqlType="VARCHAR" precision="800" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mat" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="locacion_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="oc_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idot"/>
+      <exported-key name="ev_ot_ibfk_2" table="ev_ot" schema="" catalog="spread_1" columns="ot_idot"/>
+      <exported-key name="os_ot_ibfk_2" table="os_ot" schema="" catalog="spread_1" columns="ot_idot"/>
+      <exported-key name="ot_has_activos_ibfk_2" table="ot_has_activos" schema="" catalog="spread_1" columns="ot_idot"/>
+      <exported-key name="ot_has_imagenes_ibfk_1" table="ot_has_imagenes" schema="" catalog="spread_1" columns="ot_idot"/>
+      <exported-key name="ot_has_tareas_ibfk_1" table="ot_has_tareas" schema="" catalog="spread_1" columns="ot_idot"/>
+      <exported-key name="ot_has_tecnicos_ibfk_1" table="ot_has_tecnicos" schema="" catalog="spread_1" columns="ot_idot"/>
+      <exported-key name="ot_tar_ibfk_1" table="ot_tar" schema="" catalog="spread_1" columns="ot_idot"/>
+      <exported-key name="reportes_has_ot_ibfk_1" table="reportes_has_ot" schema="" catalog="spread_1" columns="ot_idot"/>
+      <index name="fk_ot_locacion1_idx" unique="false" columns="locacion_id"/>
+      <index name="fk_ot_oc2_idx" unique="false" columns="oc_id"/>
+    </table>
+    <table name="ot_has_activos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ot_idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="activos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="ot_has_activos_ibfk_2" columns="ot_idot" ref-table="ot" ref-schema="" ref-catalog="spread_1" ref-columns="idot" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="ot_has_activos_ibfk_1" columns="activos_id" ref-table="activos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_ot_has_activos_activos1_idx" unique="false" columns="activos_id"/>
+      <index name="fk_ot_has_activos_ot1_idx" unique="false" columns="ot_idot"/>
+    </table>
+    <table name="ot_has_imagenes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ot_idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="imagenes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="ot_has_imagenes_ibfk_1" columns="ot_idot" ref-table="ot" ref-schema="" ref-catalog="spread_1" ref-columns="idot" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_ot_has_imagenes_imagenes1_idx" unique="false" columns="imagenes_id"/>
+      <index name="fk_ot_has_imagenes_ot1_idx" unique="false" columns="ot_idot"/>
+    </table>
+    <table name="ot_has_tareas" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ot_idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tareas_idtareas" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="ot_has_tareas_ibfk_1" columns="ot_idot" ref-table="ot" ref-schema="" ref-catalog="spread_1" ref-columns="idot" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_ot_has_tareas_ot1_idx" unique="false" columns="ot_idot"/>
+      <index name="fk_ot_has_tareas_tareas1_idx" unique="false" columns="tareas_idtareas"/>
+    </table>
+    <table name="ot_has_tecnicos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ot_idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tecnicos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="ot_has_tecnicos_ibfk_1" columns="ot_idot" ref-table="ot" ref-schema="" ref-catalog="spread_1" ref-columns="idot" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_ot_has_tecnicos_ot1_idx" unique="false" columns="ot_idot"/>
+      <index name="fk_ot_has_tecnicos_tecnicos1_idx" unique="false" columns="tecnicos_id"/>
+    </table>
+    <table name="ot_tar" schema="" catalog="spread_1" type="TABLE">
+      <column name="idot_tar" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tar" sqlType="VARCHAR" precision="400" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ot_idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idot_tar"/>
+      <foreign-key name="ot_tar_ibfk_1" columns="ot_idot" ref-table="ot" ref-schema="" ref-catalog="spread_1" ref-columns="idot" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_ot_tar_ot1_idx" unique="false" columns="ot_idot"/>
+    </table>
+    <table name="pagos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pagos_tipo_idpagos_tipo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="pagos_ibfk_1" columns="pagos_tipo_idpagos_tipo" ref-table="pagos_tipo" ref-schema="" ref-catalog="spread_1" ref-columns="idpagos_tipo" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="chekes_ibfk_1" table="chekes" schema="" catalog="spread_1" columns="pagos_id"/>
+      <exported-key name="pagos_has_facturas_ibfk_2" table="pagos_has_facturas" schema="" catalog="spread_1" columns="pagos_id"/>
+      <exported-key name="pagos_has_paquete_pagar_ibfk_1" table="pagos_has_paquete_pagar" schema="" catalog="spread_1" columns="pagos_id"/>
+      <index name="fk_pagos_pagos_tipo1_idx" unique="false" columns="pagos_tipo_idpagos_tipo"/>
+    </table>
+    <table name="pagos_has_facturas" schema="" catalog="spread_1" type="TABLE">
+      <column name="pagos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="facturas_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pors" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="pagos_id,facturas_id"/>
+      <foreign-key name="pagos_has_facturas_ibfk_2" columns="pagos_id" ref-table="pagos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="pagos_has_facturas_ibfk_1" columns="facturas_id" ref-table="facturas" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_pagos_has_facturas_facturas1_idx" unique="false" columns="facturas_id"/>
+      <index name="fk_pagos_has_facturas_pagos1_idx" unique="false" columns="pagos_id"/>
+    </table>
+    <table name="pagos_has_paquete_pagar" schema="" catalog="spread_1" type="TABLE">
+      <column name="pagos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="paquete_pagar_idpaquete_pagar" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pors" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="pagos_id,paquete_pagar_idpaquete_pagar"/>
+      <foreign-key name="pagos_has_paquete_pagar_ibfk_2" columns="paquete_pagar_idpaquete_pagar" ref-table="paquete_pagar" ref-schema="" ref-catalog="spread_1" ref-columns="idpaquete_pagar" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="pagos_has_paquete_pagar_ibfk_1" columns="pagos_id" ref-table="pagos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_pagos_has_paquete_pagar_pagos1_idx" unique="false" columns="pagos_id"/>
+      <index name="fk_pagos_has_paquete_pagar_paquete_pagar1_idx" unique="false" columns="paquete_pagar_idpaquete_pagar"/>
+    </table>
+    <table name="pagos_tipo" schema="" catalog="spread_1" type="TABLE">
+      <column name="idpagos_tipo" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nom" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idpagos_tipo"/>
+      <exported-key name="pagos_ibfk_1" table="pagos" schema="" catalog="spread_1" columns="pagos_tipo_idpagos_tipo"/>
+    </table>
+    <table name="paquete_pagar" schema="" catalog="spread_1" type="TABLE">
+      <column name="idpaquete_pagar" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tit" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="reportes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idpaquete_pagar"/>
+      <foreign-key name="paquete_pagar_ibfk_1" columns="reportes_id" ref-table="reportes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="pagos_has_paquete_pagar_ibfk_2" table="pagos_has_paquete_pagar" schema="" catalog="spread_1" columns="paquete_pagar_idpaquete_pagar"/>
+      <index name="fk_paquete_pagar_reportes1_idx" unique="false" columns="reportes_id"/>
+    </table>
+    <table name="pauetes" schema="" catalog="spread_1" type="TABLE">
+      <column name="idpauetes" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom" sqlType="VARCHAR" precision="400" scale="0" nullable="true" jdbcType="12"/>
+      <column name="locacion_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idpauetes"/>
+      <foreign-key name="pauetes_ibfk_1" columns="locacion_id" ref-table="locacion" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="ocloc_has_paquetes_ibfk_2" table="ocloc_has_paquetes" schema="" catalog="spread_1" columns="pauetes_idpauetes"/>
+      <exported-key name="tareas_has_pauetes_ibfk_1" table="tareas_has_pauetes" schema="" catalog="spread_1" columns="pauetes_idpauetes"/>
+      <index name="fk_pauetes_locacion1_idx" unique="false" columns="locacion_id"/>
+    </table>
+    <table name="presupuestos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="cuerpo" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="locacion_has_presupuestos_ibfk_1" table="locacion_has_presupuestos" schema="" catalog="spread_1" columns="presupuestos_id"/>
+      <exported-key name="presupuestos_has_archivos_ibfk_2" table="presupuestos_has_archivos" schema="" catalog="spread_1" columns="presupuestos_id"/>
+    </table>
+    <table name="presupuestos_has_archivos" schema="" catalog="spread_1" type="TABLE">
+      <column name="presupuestos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="archivos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="presupuestos_id,archivos_id"/>
+      <foreign-key name="presupuestos_has_archivos_ibfk_2" columns="presupuestos_id" ref-table="presupuestos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="presupuestos_has_archivos_ibfk_1" columns="archivos_id" ref-table="archivos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_presupuestos_has_archivos_archivos1_idx" unique="false" columns="archivos_id"/>
+      <index name="fk_presupuestos_has_archivos_presupuestos1_idx" unique="false" columns="presupuestos_id"/>
+    </table>
+    <table name="prof" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="role" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="usuarios_ibfk_1" table="usuarios" schema="" catalog="spread_1" columns="idprofile"/>
+    </table>
+    <table name="provincias" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nombre" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="rep_frec" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_oc" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="id_rep_tip" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="frec_num" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="frec_textt" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="rep_frec_ibfk_2" columns="id_rep_tip" ref-table="tipos reportes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="rep_frec_ibfk_1" columns="id_oc" ref-table="oc" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_rep_frec_oc1_idx" unique="false" columns="id_oc"/>
+      <index name="fk_rep_frec_tipos reportes1_idx" unique="false" columns="id_rep_tip"/>
+    </table>
+    <table name="rep_ind" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="val" sqlType="VARCHAR" precision="150" scale="0" nullable="true" jdbcType="12"/>
+      <column name="reportes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="indicadores_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="rep_ind_ibfk_2" columns="reportes_id" ref-table="reportes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="rep_ind_ibfk_1" columns="indicadores_id" ref-table="indicadores" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_rep_ind_indicadores1_idx" unique="false" columns="indicadores_id"/>
+      <index name="fk_rep_ind_reportes1_idx" unique="false" columns="reportes_id"/>
+    </table>
+    <table name="reparaciones" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="seguimientos_idseguimientos" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="eventos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="reparaciones_ibfk_2" columns="seguimientos_idseguimientos" ref-table="seguimientos" ref-schema="" ref-catalog="spread_1" ref-columns="idseguimientos" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="reparaciones_ibfk_1" columns="eventos_id" ref-table="eventos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_reparaciones_eventos1_idx" unique="false" columns="eventos_id"/>
+      <index name="fk_reparaciones_seguimientos1_idx" unique="false" columns="seguimientos_idseguimientos"/>
+    </table>
+    <table name="reportes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_tipo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="tit" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="clientes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="reportes_ibfk_2" columns="id_tipo" ref-table="tipos reportes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="reportes_ibfk_1" columns="clientes_id" ref-table="clientes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="facturas_has_reportes_ibfk_2" table="facturas_has_reportes" schema="" catalog="spread_1" columns="reportes_id"/>
+      <exported-key name="oc_has_reportes_ibfk_2" table="oc_has_reportes" schema="" catalog="spread_1" columns="reportes_id"/>
+      <exported-key name="paquete_pagar_ibfk_1" table="paquete_pagar" schema="" catalog="spread_1" columns="reportes_id"/>
+      <exported-key name="rep_ind_ibfk_2" table="rep_ind" schema="" catalog="spread_1" columns="reportes_id"/>
+      <exported-key name="reportes_has_ot_ibfk_2" table="reportes_has_ot" schema="" catalog="spread_1" columns="reportes_id"/>
+      <index name="fk_reportes_clientes1_idx" unique="false" columns="clientes_id"/>
+      <index name="fk_reportes_tipos reportes1_idx" unique="false" columns="id_tipo"/>
+    </table>
+    <table name="reportes_has_ot" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="reportes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ot_idot" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="reportes_has_ot_ibfk_2" columns="reportes_id" ref-table="reportes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="reportes_has_ot_ibfk_1" columns="ot_idot" ref-table="ot" ref-schema="" ref-catalog="spread_1" ref-columns="idot" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_reportes_has_ot_ot1_idx" unique="false" columns="ot_idot"/>
+      <index name="fk_reportes_has_ot_reportes1_idx" unique="false" columns="reportes_id"/>
+    </table>
+    <table name="sectores" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="id_locacion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="nom" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cod" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="id_img" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="sectores_ibfk_2" columns="id_locacion" ref-table="locacion" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="activos_ibfk_1" table="activos" schema="" catalog="spread_1" columns="sectores_id"/>
+      <exported-key name="tareas_has_pauetes_has_sectores_ibfk_1" table="tareas_has_pauetes_has_sectores" schema="" catalog="spread_1" columns="sectores_id"/>
+    </table>
+    <table name="seguimientos" schema="" catalog="spread_1" type="TABLE">
+      <column name="idseguimientos" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom_ident" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="num" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="pieza" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="estado" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idseguimientos"/>
+      <exported-key name="eventos_has_seguimientos_ibfk_2" table="eventos_has_seguimientos" schema="" catalog="spread_1" columns="seguimientos_idseguimientos"/>
+      <exported-key name="reparaciones_ibfk_2" table="reparaciones" schema="" catalog="spread_1" columns="seguimientos_idseguimientos"/>
+    </table>
+    <table name="tareas" schema="" catalog="spread_1" type="TABLE">
+      <column name="idtareas" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="cod" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="col" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idtareas"/>
+      <exported-key name="eventos_ibfk_2" table="eventos" schema="" catalog="spread_1" columns="tar"/>
+      <index name="cod_UNIQUE" unique="true" columns="cod"/>
+    </table>
+    <table name="tareas_has_pauetes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tareas_idtareas" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="pauetes_idpauetes" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id,tareas_idtareas"/>
+      <foreign-key name="tareas_has_pauetes_ibfk_1" columns="pauetes_idpauetes" ref-table="pauetes" ref-schema="" ref-catalog="spread_1" ref-columns="idpauetes" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="tareas_has_pauetes_has_sectores_ibfk_2" table="tareas_has_pauetes_has_sectores" schema="" catalog="spread_1" columns="tareas_has_pauetes_id"/>
+      <index name="fk_tareas_has_pauetes_pauetes1_idx" unique="false" columns="pauetes_idpauetes"/>
+      <index name="fk_tareas_has_pauetes_tareas1_idx" unique="false" columns="tareas_idtareas"/>
+    </table>
+    <table name="tareas_has_pauetes_has_sectores" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tareas_has_pauetes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sectores_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="tareas_has_pauetes_has_sectores_ibfk_2" columns="tareas_has_pauetes_id" ref-table="tareas_has_pauetes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="tareas_has_pauetes_has_sectores_ibfk_1" columns="sectores_id" ref-table="sectores" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="tareas_has_pauetes_has_sectores_has_activos_ibfk_2" table="tareas_has_pauetes_has_sectores_has_activos" schema="" catalog="spread_1" columns="tareas_has_pauetes_has_sectores_id"/>
+      <index name="fk_tareas_has_pauetes_has_sectores_sectores1_idx" unique="false" columns="sectores_id"/>
+      <index name="fk_tareas_has_pauetes_has_sectores_tareas_has_pauetes1_idx" unique="false" columns="tareas_has_pauetes_id"/>
+    </table>
+    <table name="tareas_has_pauetes_has_sectores_has_activos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="activos_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="frec_num" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="frec_text" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tareas_has_pauetes_has_sectores_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="tareas_has_pauetes_has_sectores_has_activos_ibfk_2" columns="tareas_has_pauetes_has_sectores_id" ref-table="tareas_has_pauetes_has_sectores" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="tareas_has_pauetes_has_sectores_has_activos_ibfk_1" columns="activos_id" ref-table="activos" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_tareas_has_pauetes_has_sectores_has_activos_activos1_idx" unique="false" columns="activos_id"/>
+      <index name="fk_tareas_has_pauetes_has_sectores_has_activos_tareas_has_p_idx" unique="false" columns="tareas_has_pauetes_has_sectores_id"/>
+    </table>
+    <table name="tecnicos" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ape" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="cel" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="dir" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="usuarios_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="localidades_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="imagenes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="fk_tecnicos_imagenes1_idx" unique="false" columns="imagenes_id"/>
+      <index name="fk_tecnicos_localidades1_idx1" unique="false" columns="localidades_id"/>
+      <index name="fk_tecnicos_usuarios1_idx" unique="false" columns="usuarios_id"/>
+    </table>
+    <table name="tipos reportes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nom" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="rep_frec_ibfk_2" table="rep_frec" schema="" catalog="spread_1" columns="id_rep_tip"/>
+      <exported-key name="reportes_ibfk_2" table="reportes" schema="" catalog="spread_1" columns="id_tipo"/>
+    </table>
+    <table name="usuarios" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idprofile" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="usr" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pass" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="usuarios_ibfk_1" columns="idprofile" ref-table="prof" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="FK_usuarios_prof_id" unique="false" columns="idprofile"/>
+    </table>
+    <table name="usuarios_has_clientes" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="usuarios_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="clientes_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="usuarios_has_clientes_ibfk_1" columns="clientes_id" ref-table="clientes" ref-schema="" ref-catalog="spread_1" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_usuarios_has_clientes_clientes1_idx" unique="false" columns="clientes_id"/>
+      <index name="fk_usuarios_has_clientes_usuarios1_idx" unique="false" columns="usuarios_id"/>
+    </table>
+    <table name="usuarios_has_clientes_has_locacion" schema="" catalog="spread_1" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="usuarios_has_clientes_usuarios_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="locacion_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="fk_usuarios_has_clientes_has_locacion_locacion1_idx" unique="false" columns="locacion_id"/>
+      <index name="fk_usuarios_has_clientes_has_locacion_usuarios_has_clientes_idx" unique="false" columns="usuarios_has_clientes_usuarios_id"/>
+    </table>
     <table name="ciudades" schema="" catalog="spread_electric" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -14,8 +594,24 @@
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="ciudades_partido_id_foreign" columns="partido_id" ref-table="partidos" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ciudades_partido_id_foreign" columns="partido_id" ref-table="partidos" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="clientes_ciudad_foreign" table="clientes" schema="" catalog="spread_electric" columns="ciudad"/>
       <index name="ciudades_partido_id_index" unique="false" columns="partido_id"/>
+    </table>
+    <table name="clientes" schema="" catalog="spread_electric" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cuit" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="mail" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="dir" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ciudad" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="clientes_ciudad_foreign" columns="ciudad" ref-table="ciudades" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="clientes_cuit_unique" unique="true" columns="cuit"/>
+      <index name="clientes_ciudad_index" unique="false" columns="ciudad"/>
     </table>
     <table name="migrations" schema="" catalog="spread_electric" type="TABLE">
       <column name="migration" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -33,13 +629,13 @@
     <table name="partidos" schema="" catalog="spread_electric" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="provincia_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="provincia" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="partidos_provincia_foreign" columns="provincia_id" ref-table="provincias" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="partidos_provincia_foreign" columns="provincia" ref-table="provincias" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <exported-key name="ciudades_partido_id_foreign" table="ciudades" schema="" catalog="spread_electric" columns="partido_id"/>
-      <index name="partidos_provincia_index" unique="false" columns="provincia_id"/>
+      <index name="partidos_provincia_index" unique="false" columns="provincia"/>
     </table>
     <table name="password_resets" schema="" catalog="spread_electric" type="TABLE">
       <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -56,7 +652,7 @@
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="provincias_pais_id_foreign" columns="pais_id" ref-table="paises" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
-      <exported-key name="partidos_provincia_foreign" table="partidos" schema="" catalog="spread_electric" columns="provincia_id"/>
+      <exported-key name="partidos_provincia_foreign" table="partidos" schema="" catalog="spread_electric" columns="provincia"/>
       <index name="provincias_pais_id_foreign" unique="false" columns="pais_id"/>
     </table>
     <table name="users" schema="" catalog="spread_electric" type="TABLE">

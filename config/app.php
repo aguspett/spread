@@ -138,12 +138,15 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
 
+        //Way\Generators\GeneratorsServiceProvider::class,
+        //Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Repositories\Paises\PaisesServiceProvider::class ,
 
     ],
 

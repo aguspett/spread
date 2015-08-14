@@ -19,7 +19,7 @@
         </div><!-- /.box-header -->
         <div class="box-body">
             {!! Form::open(['method' => 'POST', 'action'=> 'provinciasController@indexCountry', 'class' =>'form']) !!}
-              @include('provincias.partial.paisSelect')
+              @include('paises.partial.paisSelect')
         </div><!-- /.box-body -->
         <div class="box-footer clearfix no-border">
             <div class="form-group">

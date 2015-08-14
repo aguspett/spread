@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Repositories\Paises;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,8 +22,14 @@ class Pais extends Model
         return $pais;
     }
 
-    public function paisList()
+    public function setNameAttribute($value)
     {
-        return $this->lists('name','id');
+       return $this->attributes['name'] = strtolower($value);
     }
+    public function getNameAttribute($value)
+    {
+       return $this->attributes['name'] = ucfirst($value);
+    }
+
+
 }
