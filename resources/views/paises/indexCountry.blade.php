@@ -7,11 +7,15 @@
             <small>Ver</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Geo</a></li>
+            <li><a href="/paises"><i class="fa fa-dashboard"></i>Geo</a></li>
             <li class="active">ver</li>
         </ol>
     </section>
     <section class="content">
+        <div class="col-md-12">
+        @include('paises.partial.formIndex')
+        </div>
+        <div class="coll-md-12 clearfix">
         <div class="box box-primary">
             <div class="box-header">
     <h1> {{ $pais->name}}
@@ -40,6 +44,7 @@
             </div>
         </div><!-- /.box-body -->
 
-        </div>
+   </div>
+
     </section>
 @stop

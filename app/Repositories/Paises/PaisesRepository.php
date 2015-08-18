@@ -51,6 +51,7 @@ class PaisesRepository implements PaisesRepositoryInterface
      */
     public function getProvincias($id)
     {
+
         $pais = $this->pais->find($id);
         $pais->provincias;
         return $pais;

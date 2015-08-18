@@ -33,9 +33,9 @@ class paisesController extends Controller
      */
     public function index()
     {
-        $paises = $this->pais->getPaisesList();
+        $paises_list = $this->pais->getPaisesList();
 
-        return view('paises.index', compact('paises'));
+        return view('paises.index', compact('paises_list'));
     }
 
     /**
@@ -45,7 +45,7 @@ class paisesController extends Controller
      */
     public function create()
     {
-        $pais = $this->pais;
+        $paises_list = $this->pais;
         return view('paises.create',compact('pais'));
     }
 
@@ -69,17 +69,18 @@ class paisesController extends Controller
      * @return Response
      * @internal param int $id
      */
-    public function show(PaisesShowRequest $request)
+    public function show(PaisesShowRequest $request  )
     {
-       $pais = $this->pais->getProvincias($request->input('id'));
-       // dd($pais);
-        return view('paises.indexCountry', compact('pais'));
+       $pais = $this->pais->getProvincias($request->input('paises_list'));
+       $paises_list =  $this->pais->getPaisesList();
+
+        return view('paises.indexCountry', compact('pais','paises_list'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Paises $pais
+     * @param $id int
      *
      * @return Response
      * @internal param int Paises $pais
@@ -94,11 +95,10 @@ class paisesController extends Controller
      * Update the specified resource in storage.
      *
      * @param PaisesRequest|Request $request
-     * @param $id
      * @return Response
      * @internal param Paises $int $pais
      */
-    public function update($id , PaisesRequest $request )
+    public function update(PaisesRequest $request )
     {
 
         $pais = $this->pais->updatePais($id, $request);

@@ -31,5 +31,9 @@ class Pais extends Model
        return $this->attributes['name'] = ucfirst($value);
     }
 
+    public function getNameListAtribute()
+    {
+        return $this->lists('id','name');
+    }
 
 }

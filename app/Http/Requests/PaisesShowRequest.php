@@ -23,8 +23,9 @@ class PaisesShowRequest extends Request
      */
     public function rules()
     {
+
         return [
-           'id'=> 'requiered'
+           'paises_list'=> 'required'
         ];
     }
 }
