@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Provincias;
+namespace App\Repositories\Ciudades;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
-class ProvinciasServiceProvider extends ServiceProvider
+class CiudadesServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -24,6 +24,6 @@ class ProvinciasServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Repositories\Paises\ProvinciasRepositoryInterface','App\Repositories\Paises\ProvinciasRepository');
+    $this->app->bind('App\Repositories\Paises\CiudadesRepositoryInterface','App\Repositories\Paises\CiudadesRepository');
     }
 }

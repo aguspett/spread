@@ -8,8 +8,8 @@
 				<div class="panel-heading">Home</div>
 
 				<div class="panel-body">
-					<? Auth::user();?>
-				</div>
+					{{  Auth::user()->name }}
+                </div>
 			</div>
 		</div>
 	</div>

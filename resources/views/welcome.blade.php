@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
-
-
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
+        <title>Spread Electric S.A.</title>
+    <link href="css/login.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
+            <div class="card card-container">
+                <img src="/images/logo.png" class="profile-img-card" alt="Logo Spread">
+                   <p id="profile-name" class="profile-name-card">Inicie sesión por favor</p>
+                <form class="form-signin" role="form" method="POST" action="{{ url('/auth/login') }}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <span id="reauth-email" class="reauth-email"></span>
+                    <input type="email" id="inputEmail" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email address" required autofocus>
+                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <div id="remember"  class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remeberme" value="remember-me"> Recordarme
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Iniciar Sessión</button>
+                </form><!-- /form -->
+                <a href="{{ url('/password/email') }}" class="forgot-password">
+                   Olvide mi contraseña
+                </a>
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div><!-- /card-container -->
         </div>
     </body>
 </html>

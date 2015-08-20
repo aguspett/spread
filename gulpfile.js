@@ -20,7 +20,13 @@ elixir(function(mix) {
         '_all-skins.css',
         'fontawsome.css',
         'ionicons.min.css'
-    ])
+   ]);
+    mix.styles([
+        'bootstrap.min.css',
+        'bootstrap.css.map',
+        'login.css',
+        ],'public/css/login.css');
+
     mix.scripts(['jquery-2.1.4.js',
         'bootstrap.min.js',
         'app.min.js']);

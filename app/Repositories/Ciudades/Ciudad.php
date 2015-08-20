@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Repositories\Ciudades;
 
 use Illuminate\Database\Eloquent\Model;
 

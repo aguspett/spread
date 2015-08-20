@@ -9,7 +9,6 @@
     </head>
         <body class="skin-blue">
         <div class="wrapper">
-
             <header class="main-header">
                 <!-- Logo -->
                 <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
