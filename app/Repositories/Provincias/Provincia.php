@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Repositories\Provincias;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,7 @@ class Provincia extends Model
                 ];
 
     public function pais(){
-        return $this->belongsTo('App\Pais');
+        return $this->belongsTo('App\Repositories\Paises\Pais');
             }
     public function partidos(){
         return $this->hasMany('App\Partido');
