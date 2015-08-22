@@ -32,7 +32,12 @@ class PaisesRepository implements PaisesRepositoryInterface
      */
     public function getPaisesList()
     {
-        return $this->pais->lists('name','id');
+        $default= '-';
+        $array = (array)$this->pais->lists('name','id');
+       return  array_unshift($array ,$default);
+
+
+
     }
     /**
      * obtiener el pais

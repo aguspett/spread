@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Provincias;
+namespace App\Repositories\Provincias ;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
@@ -24,6 +24,6 @@ class ProvinciasServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Repositories\Paises\ProvinciasRepositoryInterface','App\Repositories\Paises\ProvinciasRepository');
+    $this->app->bind('App\Repositories\Provincias\ProvinciasRepositoryInterface','App\Repositories\Provincias\ProvinciasRepository');
     }
 }

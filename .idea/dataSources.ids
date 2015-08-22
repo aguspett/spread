@@ -587,6 +587,17 @@
       <index name="fk_usuarios_has_clientes_has_locacion_locacion1_idx" unique="false" columns="locacion_id"/>
       <index name="fk_usuarios_has_clientes_has_locacion_usuarios_has_clientes_idx" unique="false" columns="usuarios_has_clientes_usuarios_id"/>
     </table>
+    <table name="Clientes" schema="" catalog="spread_electric" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dircom" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="localidad" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="logo" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="clientes_email_unique" unique="true" columns="email"/>
+      <index name="clientes_localidad_index" unique="false" columns="localidad"/>
+    </table>
     <table name="ciudades" schema="" catalog="spread_electric" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>

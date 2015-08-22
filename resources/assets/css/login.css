@@ -7,6 +7,7 @@
 body, html {
 
     width: 100% ;
+    background-color: #000000;
     background: url('/images/login.jpg') no-repeat;
     background-size: 100%;
 }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\provinciasRequest;
 use App\Http\Requests\searchProvinciasRequest;
-use App\Provincia;
-use App\Pais;
+use App\Repositories\Paises\PaisesRepositoryInterface;
+use App\Repositories\Provincias\Provincia;
+use App\Repositories\Paises\Pais;
+use App\Repositories\Provincias\ProvinciasRepositoryInterface;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,14 +16,25 @@ use Illuminate\Support\Facades\App;
 
 class provinciasController extends Controller
 {
-    public function index(Pais $pais,Request $request){
+    public function __construct(PaisesRepositoryInterface $pais, ProvinciasRepositoryInterface $porvincia)
+    {
+        $this->pais = $pais;
+        $this->provincia = $porvincia;
+    }
+    public function index(){
 
-            $paises = $pais->paisList();
+        $paises_list = $this->pais->getPaisesList();
+        dd($paises_list);
+//        $provincias_list = $this->
+
+            return view('provincias.index', compact('paises_list'));
 
 
-            return view('provincias.index', compact('paises'));
+    }
 
-
+    public function provinciasList($id)
+    {
+     return $this->provincia->getProvinciasList($id)->toJson();
     }
     /**
      * Muestra prvincias para un pais
@@ -30,8 +43,6 @@ class provinciasController extends Controller
      */
     public function indexCountry(searchProvinciasRequest $request)
     {
-
-     return redirect('paises/'.$request->input('pais_id'));
 
     }
 
@@ -42,11 +53,7 @@ class provinciasController extends Controller
      */
     public function create(Pais $pais, Provincia $provincia)
     {
-
-        $seccion= 'Provincias';
-        $opcion = 'Ver provincias';
         $paises = $pais::all()->lists('name','id');
-
         return view('provincias.create', compact('paises','provincia','seccion','opcion'));
     }
 
