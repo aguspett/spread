@@ -26,18 +26,23 @@ class PaisesRepository implements PaisesRepositoryInterface
     }
 
     /**
-     *  genera lista con nombe e id de los paises
+     *  genera lista con nombe e id de los paises con nullo al principio de la lista
      *
      * @return mixed
      */
+    public function getPaisesListWithNull()
+    {
+        $array =$this->pais->lists('name','id');
+        $array->prepend('-');
+       return  $array;
+
+
+
+    }
+
     public function getPaisesList()
     {
-        $default= '-';
-        $array = (array)$this->pais->lists('name','id');
-       return  array_unshift($array ,$default);
-
-
-
+        return $this->pais->lists('name','id');
     }
     /**
      * obtiener el pais

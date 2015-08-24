@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class searchProvinciasRequest extends Request
+class showProvinciasRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,10 @@ class searchProvinciasRequest extends Request
      */
     public function rules()
     {
+       // dd($this->all());
         return [
-            'pais_id'=> 'required'
+            'paises_list' => "exists:paises,id",
+            'provincias_list'=> "exists:provincias,id"
         ];
     }
 }

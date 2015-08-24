@@ -438,6 +438,26 @@
                     $('#flash-overlay-modal').modal();
 //                    $('div.alert').not('.alert-important').delay(3000).slideup(300);
                     $('select').select2();
+                    function fillSelect(data, object) {
+                        object.empty();
+                        $.each(data, function (key, element) {
+                            object.append($('<option>', {
+                                value: key,
+                                text: element
+                            }));
+                        });
+                    }
+                    function getLIstForSelect(reference,url,fillable) {
+                        var id = reference.val();
+                        return  $.ajax({
+                            url: url + id,
+                            type: "GET",
+                            dataType: 'json',
+                            success: function (data) {
+                                fillSelect(data,fillable);
+                            }
+                        });
+                    };
                 </script>
         @yield('jscript')
 

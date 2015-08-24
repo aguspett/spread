@@ -33,7 +33,7 @@ class paisesController extends Controller
      */
     public function index()
     {
-        $paises_list = $this->pais->getPaisesList();
+        $paises_list = $this->pais->getPaisesListWithNull();
 
         return view('paises.index', compact('paises_list'));
     }
@@ -73,7 +73,6 @@ class paisesController extends Controller
     {
        $pais = $this->pais->getProvincias($request->input('paises_list'));
        $paises_list =  $this->pais->getPaisesList();
-
         return view('paises.indexCountry', compact('pais','paises_list'));
     }
 

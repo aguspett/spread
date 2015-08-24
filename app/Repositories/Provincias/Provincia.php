@@ -15,20 +15,11 @@ class Provincia extends Model
         return $this->belongsTo('App\Repositories\Paises\Pais');
             }
     public function partidos(){
-        return $this->hasMany('App\Partido');
+        return $this->hasMany('App\Repositories\Partidos\Partido');
+    }
+    public function getNameAttribute($value)
+    {
+        return $this->attributes['name'] = ucfirst($value);
     }
 
-    public function selectDefault($selectList,$emptyLabel)
-    {
-        return array(''=>$emptyLabel) + $selectList;
-    }
-
-/**
-     * devuelve lista de paises
-     * @return array
-     */
-    public function getPaisesListAtributte()
-    {
-        return App\Pais::all();
-    }
 }

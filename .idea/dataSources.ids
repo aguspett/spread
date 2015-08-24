@@ -640,13 +640,13 @@
     <table name="partidos" schema="" catalog="spread_electric" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
-      <column name="provincia" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="provincia_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="partidos_provincia_foreign" columns="provincia" ref-table="provincias" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="partidos_provincia_foreign" columns="provincia_id" ref-table="provincias" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <exported-key name="ciudades_partido_id_foreign" table="ciudades" schema="" catalog="spread_electric" columns="partido_id"/>
-      <index name="partidos_provincia_index" unique="false" columns="provincia"/>
+      <index name="partidos_provincia_index" unique="false" columns="provincia_id"/>
     </table>
     <table name="password_resets" schema="" catalog="spread_electric" type="TABLE">
       <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -663,7 +663,7 @@
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="provincias_pais_id_foreign" columns="pais_id" ref-table="paises" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
-      <exported-key name="partidos_provincia_foreign" table="partidos" schema="" catalog="spread_electric" columns="provincia"/>
+      <exported-key name="partidos_provincia_foreign" table="partidos" schema="" catalog="spread_electric" columns="provincia_id"/>
       <index name="provincias_pais_id_foreign" unique="false" columns="pais_id"/>
     </table>
     <table name="users" schema="" catalog="spread_electric" type="TABLE">

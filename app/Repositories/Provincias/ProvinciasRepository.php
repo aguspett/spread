@@ -4,15 +4,26 @@ use App\Repositories\Provincias;
 
 class ProvinciasRepository implements ProvinciasRepositoryInterface
 {
-    
+    /**
+     * Construye El pais en la propiedad pais
+     * @param Provincia $provincias
+     */
+    public function __construct( Provincia $provincias)
+    {
+        $this->provincia = $provincias;
+    }
+
     public function getAll($id_pais)
     {
-        return $this->provincia->all($id_pais);
+        return $this->provincia->where('pais_id', $id_pais)->get();
     }
 
     public function getProvinciasList($id_pais)
     {
-        // TODO: Implement getProvinciasList() method.
+        $array =  $this->provincia->where('pais_id', $id_pais)->get()->lists('name','id');
+        $array->prepend('-')->toJson();
+        return  $array;
+
     }
 
     public function getProvincia($id)
@@ -22,7 +33,9 @@ class ProvinciasRepository implements ProvinciasRepositoryInterface
 
     public function getPartidos($id)
     {
-        // TODO: Implement getPartidos() method.
+      $partidos = $this->provincia->find($id);
+        $partidos->partidos ;
+        return $partidos;
     }
 
     public function create(ProvinciassRequest $request)

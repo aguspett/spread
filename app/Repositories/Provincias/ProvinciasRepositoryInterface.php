@@ -1,5 +1,7 @@
 <?php namespace App\Repositories\Provincias;
 
+use App\Http\Requests\showProvinciasRequest;
+
 interface ProvinciasRepositoryInterface
 {
     
@@ -10,5 +12,6 @@ interface ProvinciasRepositoryInterface
     public function create(ProvinciassRequest $request);
     public function updateProvincia($id, ProvinciasRequest $request);
     public function deleteProvincia($id);
+
 
 }

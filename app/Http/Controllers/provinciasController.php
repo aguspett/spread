@@ -9,10 +9,10 @@ use App\Repositories\Provincias\Provincia;
 use App\Repositories\Paises\Pais;
 use App\Repositories\Provincias\ProvinciasRepositoryInterface;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
+use App\Http\Requests\showProvinciasRequest;
 
 class provinciasController extends Controller
 {
@@ -23,32 +23,36 @@ class provinciasController extends Controller
     }
     public function index(){
 
-        $paises_list = $this->pais->getPaisesList();
-        dd($paises_list);
-//        $provincias_list = $this->
+        $paises_list = $this->pais->getPaisesListWithNull();
 
             return view('provincias.index', compact('paises_list'));
-
-
     }
 
-    public function provinciasList($id)
+    public function provinciasList($id_pais)
     {
-     return $this->provincia->getProvinciasList($id)->toJson();
+
+     return $this->provincia->getProvinciasList($id_pais);
     }
     /**
-     * Muestra prvincias para un pais
+     * Muestra provincias para un pais
      *
+     * @param showProvinciasRequest $request
      * @return vista de provincias de un pais
      */
-    public function indexCountry(searchProvinciasRequest $request)
+    public function show(showProvinciasRequest $request)
     {
-
+        $provincia = $this->provincia->getPartidos($request->input('provincias_list'));
+        $provincias_list = $this->provincia->getProvinciasList($request->input('paises_list'));
+        $paises_list = $this->pais->getPaisesListWithNull();
+        $pais =  $this->pais->getCountry($request->input('paises_list'));
+        return view('provincias.indexProvince', compact('provincia','paises_list','provincias_list', 'pais' ));
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param Pais $pais
+     * @param Provincia $provincia
      * @return Response
      */
     public function create(Pais $pais, Provincia $provincia)
@@ -70,16 +74,7 @@ class provinciasController extends Controller
         return redirect('paises/'.$request->input('pais_id'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        dd($request);
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -116,4 +111,6 @@ class provinciasController extends Controller
     {
         dd($request);
     }
+
+
 }
