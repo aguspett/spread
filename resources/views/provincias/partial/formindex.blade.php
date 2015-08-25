@@ -9,7 +9,7 @@
 {!! Form::open(['method' => 'get', 'action'=> 'provinciasController@show', 'class' =>'form']) !!}
 @include('paises.partial.paisSelect')
 @include('provincias.partial.provinciasSelect')
-<button type="submit" class="btn btn-success pull-right">Ver</button>
+<button type="button" id="viewProvince" class="btn btn-success pull-right">Ver</button>
 </div><!-- /.box-body -->
 <div class="box-footer clearfix no-border">
     <div class="form-group">
@@ -24,12 +24,17 @@
 
 @section('jscript')
     <script>
+
         $().ready( function (){
             getLIstForSelect($('#paises'), '/provincias/list/', $('#provincias'));
         })
         $('#paises').change(function () {
             $('#provincias').empty();
             getLIstForSelect($('#paises'), '/provincias/list/', $('#provincias'));
+        });
+        $('#viewProvince').click(function (){
+            var url = '/provincias/'+$('#provincias').val();
+            $(location).attr("href", url);
         });
     </script>
 @stop

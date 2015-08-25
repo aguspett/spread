@@ -23,8 +23,7 @@ class showProvinciasRequest extends Request
      */
     public function rules()
     {
-       // dd($this->all());
-        return [
+             return [
             'paises_list' => "exists:paises,id",
             'provincias_list'=> "exists:provincias,id"
         ];

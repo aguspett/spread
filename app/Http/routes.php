@@ -23,8 +23,6 @@ Route::get('/home',function (){
 
 Route::resource('paises','paisesController');
 Route::post('paises/show','paisesController@show');
-Route::post('provincias/pais','provinciasController@show');
-Route::get('provincias/list/{id}', 'provinciasController@provinciasList');
 Route::resource('provincias','provinciasController');
 
 Route::resource('partidos','partidosController');

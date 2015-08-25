@@ -25,7 +25,9 @@ class provinciasRequest extends Request
     {
 
         return [
-            'name'=> 'required|unique:paises|min:3'
+            'name'=> 'required|unique:paises|min:3',
+            'pais_id'=>'exists:paises,id'
             ];
+
     }
 }

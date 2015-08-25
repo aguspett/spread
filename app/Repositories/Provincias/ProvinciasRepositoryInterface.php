@@ -1,5 +1,6 @@
 <?php namespace App\Repositories\Provincias;
 
+use App\Http\Requests\provinciasRequest;
 use App\Http\Requests\showProvinciasRequest;
 
 interface ProvinciasRepositoryInterface
@@ -9,8 +10,8 @@ interface ProvinciasRepositoryInterface
     public function getProvinciasList($id_pais);
     public function getProvincia($id);
     public function getPartidos($id);
-    public function create(ProvinciassRequest $request);
-    public function updateProvincia($id, ProvinciasRequest $request);
+    public function create(provinciasRequest $request);
+    public function update(provinciasRequest $request);
     public function deleteProvincia($id);
 
 

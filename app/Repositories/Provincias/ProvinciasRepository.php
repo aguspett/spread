@@ -1,5 +1,6 @@
 <?php namespace App\Repositories\Provincias;
 
+use App\Http\Requests\provinciasRequest;
 use App\Repositories\Provincias;
 
 class ProvinciasRepository implements ProvinciasRepositoryInterface
@@ -28,7 +29,7 @@ class ProvinciasRepository implements ProvinciasRepositoryInterface
 
     public function getProvincia($id)
     {
-        // TODO: Implement getProvincia() method.
+        return $this->provincia->find($id);
     }
 
     public function getPartidos($id)
@@ -38,14 +39,18 @@ class ProvinciasRepository implements ProvinciasRepositoryInterface
         return $partidos;
     }
 
-    public function create(ProvinciassRequest $request)
+    public function create(provinciasRequest $request)
     {
         // TODO: Implement create() method.
     }
 
-    public function updateProvincia($id, ProvinciasRequest $request)
+    /**
+     * @param provinciasRequest $request
+     * @return int  id de la provincia modificada
+     */
+    public function update(provinciasRequest $request)
     {
-        // TODO: Implement updateProvincia() method.
+        return $this->provincia->update($request->except('_method','_token'));
     }
 
     public function deleteProvincia($id)

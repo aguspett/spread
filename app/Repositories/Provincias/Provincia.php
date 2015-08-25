@@ -10,6 +10,7 @@ class Provincia extends Model
                 'name',
                 'pais_id'
                 ];
+    protected $table = 'provincias';
 
     public function pais(){
         return $this->belongsTo('App\Repositories\Paises\Pais');

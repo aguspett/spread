@@ -457,7 +457,26 @@
                                 fillSelect(data,fillable);
                             }
                         });
-                    };
+                    }
+                    function deleter (element){
+                       var url = '/'+$(element).attr('deleter')+'/'+$(element).val();
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                _method: 'DELETE',
+                                _token: $(element).attr('token'),
+                                id:$(element).val()
+                            },
+                            success: function (data) {
+                                var urlredirect = '/'+$(element).attr('deleter')
+                         }
+                        });
+                    }
+                    $('button[name=delete]').click(function(){
+                       deleter(this);
+                        $($(this).attr('container')+'#'+$(this).attr('value')).remove();
+                    });
                 </script>
         @yield('jscript')
 

@@ -27,13 +27,13 @@
             <div class="box-body">
                 @foreach ($pais->provincias as $provincia)
                     <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" id="{{$provincia->id}}">
                             {{ $provincia->name }}
                             <div class=" btn-group pull-right">
 
-                                {!! Form::model($provincia,['method' => 'DELETE', 'action' => ['provinciasController@destroy', $provincia->id]  ] ) !!}
-                                <button type="submit"class="btn btn-warning">Elim</button>
-                                {!! Form::close() !!}
+                                 <button token="{{ csrf_token() }}" deleter="provincias" container="li" name="delete" value="{{$provincia->id}}" type="button"class="btn
+                                 btn-warning">Elim</button>
+
 
                                 {!! Form::open(['method' => 'GET', 'action'=> ['provinciasController@edit', $provincia->id] ]) !!}
                                 <button type="submit"class="btn btn-success">Editar</button>

@@ -28,23 +28,18 @@ class provinciasController extends Controller
             return view('provincias.index', compact('paises_list'));
     }
 
-    public function provinciasList($id_pais)
-    {
-
-     return $this->provincia->getProvinciasList($id_pais);
-    }
-    /**
+   /**
      * Muestra provincias para un pais
      *
      * @param showProvinciasRequest $request
      * @return vista de provincias de un pais
      */
-    public function show(showProvinciasRequest $request)
+    public function show($id)
     {
-        $provincia = $this->provincia->getPartidos($request->input('provincias_list'));
-        $provincias_list = $this->provincia->getProvinciasList($request->input('paises_list'));
-        $paises_list = $this->pais->getPaisesListWithNull();
-        $pais =  $this->pais->getCountry($request->input('paises_list'));
+        $provincia = $this->provincia->getPartidos($id);
+       $pais_id =  $this->provincia->getProvincia($id)->pais_id;
+        list($provincias_list, $paises_list) = $this->getSelectlistsLists($pais_id);
+        $pais =  $this->pais->getCountry($pais_id);
         return view('provincias.indexProvince', compact('provincia','paises_list','provincias_list', 'pais' ));
     }
 
@@ -82,10 +77,11 @@ class provinciasController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit(Provincia $provincia)
+    public function edit($id)
     {
-        $paises = Pais::all()->lists('name','id');
-       return view('provincias.edit', compact('provincia','paises'));
+        $paises_list = $this->pais->getPaisesList();
+        $provincia = $this->provincia->getProvincia($id);
+       return view('provincias.edit', compact('provincia','paises_list'));
     }
 
     /**
@@ -95,10 +91,11 @@ class provinciasController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(provinciasRequest $request, Provincia $provincia)
+    public function update(provinciasRequest $request)
     {
-        $provincia->update($request->all());
-        return redirect('paises/'.$request->input('pais_id'));
+      $provincia = $this->provincia->update($request);
+
+        return redirect('/provincias/'.$provincia);
     }
 
     /**
@@ -109,7 +106,21 @@ class provinciasController extends Controller
      */
     public function destroy($id)
     {
-        dd($request);
+
+    }
+
+    /**
+     * devuelve listas para llenar los selects
+     * @param $provinciaId
+     * @return array
+     *
+     */
+   private function getSelectlistsLists($provinciaId)
+    {
+
+        $provincias_list = $this->provincia->getProvinciasList($provinciaId);
+        $paises_list = $this->pais->getPaisesListWithNull();
+        return array($provincias_list, $paises_list);
     }
 
 
