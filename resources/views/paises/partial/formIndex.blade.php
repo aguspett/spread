@@ -1,4 +1,4 @@
-<div class="col-md-4 margin clearfix">
+<div class="col-md-4 ">
 <div class="box box-primary">
     <div class="box-header">
         <h3>Paises</h3>

@@ -11,24 +11,24 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss');
-    mix.styles([
-        'bootstrap.min.css',
-        'bootstrap.css.map',
-        'AdminLTE.min.css',
-        '_all-skins.css',
-        'fontawsome.css',
-        'ionicons.min.css'
-   ]);
-    mix.styles([
-        'bootstrap.min.css',
-        'bootstrap.css.map',
-        'login.css',
-        ],'public/css/login.css');
+var paths = {
+    'jquery': './vendor/bower_components/jquery/',
+    'bootstrap': './vendor/bower_components/bootstrap-sass-official/assets/'
+}
 
+//elixir(function(mix) {
+//
+//    mix.sass('_bootstrap.scss', 'public/css/');
+//
+//});
+
+
+elixir(function(mix) {
+    mix.sass("app.scss", 'public/css');
+    mix.less('resources/assets/less/admin-lte/build/less/AdminLTE.less', 'public/css/adminLTE.css')
     mix.scripts(['jquery-2.1.4.js',
         'bootstrap.min.js',
         'app.min.js']);
+
     mix.version('public/css/app.css');
 });

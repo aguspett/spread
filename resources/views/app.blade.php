@@ -6,21 +6,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{ $page_title or "admin-lte" }}</title>
+    <title>{{ $page_title or "Spread Electric s.a." }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link href="{{ asset("css/ionicons.min.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("css/fontawsome.css")}}" rel="stylesheet" type="text/css" />
+
     <!-- Bootstrap 3.3.2 -->
-    <link href="{{ asset("/bower_components/admin-lte/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("css/app.css") }}" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
-    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="{{ asset("/bower_components/admin-lte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("css/adminLTE.css")}}" rel="stylesheet" type="text/css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     <!-- AdminLTE Admin-ltee have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link href="{{ asset("/bower_components/admin-lte/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="skin-blue">
+<body class="skin-blue sidebar-mini sidebar-collapse fixed">
 <div class="wrapper">
 
     <!-- Header -->
@@ -37,7 +41,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Sidebar -->
     @include('sidebar')
-
+            <!-- The sidebar container -->
+    <!-- Two skins are available control-sidebar-dark and control-sidebar-light -->
+    <div class="control-sidebar control-sidebar-dark">
+        <!-- Place the content of the sidebar here -->
+    </div>
+    <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar and should be left empty. -->
+    <div class='control-sidebar-bg'></div>
             <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -60,28 +71,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
-    <!-- Footer -->
-    @include('footer')
+
 
 </div><!-- ./wrapper -->
-
+<!-- Footer -->
+@include('footer')
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.1.3 -->
 <script src="{{ asset ("/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js") }}"></script>
 <!-- Bootstrap 3.3.2 JS -->
 <script src="{{ asset ("/bower_components/admin-lte/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("/bower_components/admin-lte/plugins/slimScroll/jquery.slimscroll.js") }}" type="text/javascript"></script>
 <!-- AdminLTE admin-lte-->
-<script src="{{ asset ("/bower_components/admin-lte/dist/js/app.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("/bower_components/admin-lte/dist/js/app.js") }}" type="text/javascript"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience -->
-            <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+            <script src="{{asset("/bower_components/admin-lte/plugins/select2/select2.js") }}"></script>
                 <script>
                     $('#flash-overlay-modal').modal();
 //                    $('div.alert').not('.alert-important').delay(3000).slideup(300);
-                    $('select').select2();
+                    $('select').select2({width:'100%'});
                     function fillSelect(data, object) {
                         object.empty();
                         $.each(data, function (key, element) {

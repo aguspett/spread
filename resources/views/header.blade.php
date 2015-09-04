@@ -144,6 +144,9 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class=" dropdown-toggle" data-toggle="control-sidebar"><i>S</i></a>
+                </li>
             </ul>
         </div>
     </nav>
