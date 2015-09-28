@@ -1,5 +1,3 @@
-
-
 <div class="col-md-4 margin clearfix">
     <div class="box box-primary">
         <div class="box-header">
@@ -10,14 +8,10 @@
 @include('paises.partial.paisSelect')
 @include('provincias.partial.provinciasSelect')
 <button type="button" id="viewProvince" class="btn btn-success pull-right">Ver</button>
+            {!! Form::close() !!}
 </div><!-- /.box-body -->
 <div class="box-footer clearfix no-border">
-    <div class="form-group">
-    </div>
-</div>
-{!! Form::close() !!}
-        <div class="box-footer">
-            @include('errors.error')
+          @include('errors.error')
         </div>
 </div><!-- /.box -->
 </div>

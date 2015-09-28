@@ -321,16 +321,24 @@ function _init() {
         if ($(window).width() > (screenSizes.sm - 1)) {
           if ($("body").hasClass('sidebar-collapse')) {
             $("body").removeClass('sidebar-collapse').trigger('expanded.pushMenu');
+              $(".logo").empty();
+            $(".logo").append('<b>Spread</b> Electric s.a.');
           } else {
             $("body").addClass('sidebar-collapse').trigger('collapsed.pushMenu');
+              $(".logo").empty();
+              $(".logo").append('<b>SPR</b>');
           }
         }
         //Handle sidebar push menu for small screens
         else {
           if ($("body").hasClass('sidebar-open')) {
             $("body").removeClass('sidebar-open').removeClass('sidebar-collapse').trigger('collapsed.pushMenu');
+              $(".logo").empty();
+              $(".logo").append('<b>Spread</b> Electric s.a.');
           } else {
             $("body").addClass('sidebar-open').trigger('expanded.pushMenu');
+              $(".logo").empty();
+              $(".logo").append('<b>SPR</b>');
           }
         }
       });
@@ -347,6 +355,8 @@ function _init() {
               || ($('body').hasClass('fixed')
                       && $('body').hasClass('sidebar-mini'))) {
         this.expandOnHover();
+          $(".logo").empty();
+          $(".logo").append('<b>Spread</b> Electric s.a.');
       }
     },
     expandOnHover: function () {
@@ -358,12 +368,16 @@ function _init() {
                 && $("body").hasClass('sidebar-collapse')
                 && $(window).width() > screenWidth) {
           _this.expand();
+            $(".logo").empty();
+            $(".logo").append('<b>Spread</b> Electric s.a.');
         }
       }, function () {
         if ($('body').hasClass('sidebar-mini')
                 && $('body').hasClass('sidebar-expanded-on-hover')
                 && $(window).width() > screenWidth) {
           _this.collapse();
+            $(".logo").empty();
+            $(".logo").append('<b>SPR</b>');
         }
       });
     },

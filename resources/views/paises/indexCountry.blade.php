@@ -14,8 +14,9 @@
                 </div>
 
             <div class="box-body">
+                <ul class="list-group">
                 @foreach ($pais->provincias as $provincia)
-                    <ul class="list-group">
+
                         <li class="list-group-item" id="{{$provincia->id}}">
                             {{ $provincia->name }}
                             <span class=" btn-group pull-right">
@@ -27,8 +28,9 @@
 
                             </span>
                         </li>
-                    </ul>
+
                 @endforeach
+                </ul>
             </div>
             <div class="box-footer  no-border">
             </div>

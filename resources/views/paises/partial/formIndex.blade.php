@@ -14,8 +14,6 @@
 </div>
 </div>
     </div><!-- /.box-body -->
-    <div class="box-footer clearfix no-border">
 
-</div>
     </div>
 </div>

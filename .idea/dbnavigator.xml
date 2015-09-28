@@ -22,7 +22,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="9b9bf1ff-8470-4e46-8425-2ac44ed62884">
+        <schema name="spread_electric" object-types="column, table, view" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="9b9bf1ff-8470-4e46-8425-2ac44ed62884">
@@ -32,6 +36,9 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-list connection-id="9b9bf1ff-8470-4e46-8425-2ac44ed62884" dataset="spread_1.sectores" active-filter-id="" />
     <filter-list connection-id="9b9bf1ff-8470-4e46-8425-2ac44ed62884" dataset="spread_1.chekes" active-filter-id="" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/database/seeds/partidos.sql" connection-id="9b9bf1ff-8470-4e46-8425-2ac44ed62884" current-schema="spread_electric" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -49,7 +56,9 @@
     <filters />
   </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
+    <recently-used-interfaces>
+      <mapping database-type="MYSQL" interface-id="DEFAULT" />
+    </recently-used-interfaces>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>

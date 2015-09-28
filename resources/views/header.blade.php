@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+    <a href="index2.html" class="logo"><b>SPR</b></a>
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -145,7 +145,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a class=" dropdown-toggle" data-toggle="control-sidebar"><i>S</i></a>
+                    <a class=" dropdown-toggle" data-toggle="control-sidebar"><i class="ion ion-ios-settings-strong"></i></a>
                 </li>
             </ul>
         </div>

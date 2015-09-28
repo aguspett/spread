@@ -137,6 +137,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
         /*
          * Application Service Providers...
          */

@@ -8,15 +8,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="UTF-8">
     <title>{{ $page_title or "Spread Electric s.a." }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <link href="{{ asset("css/ionicons.min.css")}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset("css/fontawsome.css")}}" rel="stylesheet" type="text/css" />
-
+    <link href="{{ asset("bower_components/admin-lte/plugins/ionicons-2.0.1/css/ionicons.min.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("bower_components/admin-lte/plugins/font-awesome-4.4.0/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css" />
     <!-- Bootstrap 3.3.2 -->
     <link href="{{ asset("css/app.css") }}" rel="stylesheet" type="text/css" />
-    <!-- Font Awesome Icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Ionicons -->
-    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="{{ asset("css/adminLTE.css")}}" rel="stylesheet" type="text/css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />

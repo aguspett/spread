@@ -28,6 +28,9 @@ class provinciasController extends Controller
             return view('provincias.index', compact('paises_list'));
     }
 
+    public function provinciasList($idPais){
+        return $this->provincia->getProvinciasList($idPais);
+    }
    /**
      * Muestra provincias para un pais
      *

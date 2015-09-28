@@ -34,8 +34,7 @@ class ProvinciasRepository implements ProvinciasRepositoryInterface
 
     public function getPartidos($id)
     {
-      $partidos = $this->provincia->find($id);
-        $partidos->partidos ;
+      $partidos = $this->provincia->find($id)->partidos()->orderBy('name')->paginate(15);
         return $partidos;
     }
 

@@ -97,12 +97,12 @@ class paisesController extends Controller
      * @return Response
      * @internal param Paises $int $pais
      */
-    public function update(PaisesRequest $request )
+    public function update($id,PaisesRequest $request )
     {
 
         $pais = $this->pais->updatePais($id, $request);
 
-        return redirect()->action('paisesController@show', $pais->id);
+        return redirect()->action('paisesController@index', $pais->id);
     }
 
     /**
