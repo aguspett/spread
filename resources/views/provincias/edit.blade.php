@@ -8,7 +8,7 @@
             </div><!-- /.box-header -->
             <div class="box-body">
     {!! Form::model($provincia,['method' => 'PATCH', 'action'=> ['provinciasController@update', $provincia->id]]) !!}
-   @include('provincias.partial.form',["submitButton" => "Editar Articulo"])
+   @include('provincias.partial.form',["submitButton" => "Guardar Cambios"])
             </div><!-- /.box-header -->
             <div class="box-body">
     {!! Form::close() !!}

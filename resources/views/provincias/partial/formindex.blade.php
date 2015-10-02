@@ -1,4 +1,4 @@
-<div class="col-md-4 margin clearfix">
+
     <div class="box box-primary">
         <div class="box-header">
             <h3>Buscar provincia de:</h3>
@@ -14,7 +14,6 @@
           @include('errors.error')
         </div>
 </div><!-- /.box -->
-</div>
 
 @section('jscript')
     <script>

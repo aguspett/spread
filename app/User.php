@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'photo'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -32,4 +32,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function getNameAtribute($value)
+    {
+        return $this->attributes['name'] = ucfirst($value);
+    }
+    /**
+     * Upload user image
+     * @param Request $data
+     * @return null|string
+     */
+    public static function uploadUserImage($data)
+    {
+        $complete_route = 'uploads/userimages/';
+        if ($data->hasFile('photo')){
+            $image_name = time()."-".$data->file('photo')->getClientOriginalName();
+            $data->file('photo')->move('uploads/userimages', $image_name);
+            $complete_route = $complete_route.$image_name;
+        }
+        else{
+            $complete_route = $complete_route.'user.jpg';
+        }
+        return $complete_route;
+    }
 }

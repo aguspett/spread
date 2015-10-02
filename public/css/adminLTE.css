@@ -1519,7 +1519,7 @@ a:focus {
   display: none;
 }
 .box .nav-stacked > li {
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #919191;
   margin: 0;
 }
 .box .nav-stacked > li:last-of-type {
@@ -1530,10 +1530,10 @@ a:focus {
   overflow: auto;
 }
 .box .border-right {
-  border-right: 1px solid #f4f4f4;
+  border-right: 1px solid #919191;
 }
 .box .border-left {
-  border-left: 1px solid #f4f4f4;
+  border-left: 1px solid #919191;
 }
 .box.box-solid {
   border-top: 0;
@@ -1685,7 +1685,7 @@ a:focus {
   position: relative;
 }
 .box-header.with-border {
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #919191;
 }
 .collapsed-box .box-header.with-border {
   border-bottom: none;
@@ -1769,7 +1769,7 @@ a:focus {
   border-top-right-radius: 0;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-  border-top: 1px solid #f4f4f4;
+  border-top: 1px solid #919191;
   padding: 10px;
   background-color: #c3c3c3;
 }
@@ -2086,7 +2086,7 @@ a:focus {
 .timeline > li > .timeline-item > .timeline-header {
   margin: 0;
   color: #555;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #919191;
   padding: 10px;
   font-size: 16px;
   line-height: 1.1;
@@ -2555,7 +2555,7 @@ a:focus {
 .product-list-in-box > .item {
   box-shadow: none;
   border-radius: 0;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #919191;
 }
 .product-list-in-box > .item:last-of-type {
   border-bottom-width: 0;
@@ -2570,16 +2570,16 @@ a:focus {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  border-top: 1px solid #f4f4f4;
+  border-top: 1px solid #919191;
 }
 .table > thead > tr > th {
-  border-bottom: 2px solid #f4f4f4;
+  border-bottom: 2px solid #919191;
 }
 .table tr td .progress {
   margin-top: 5px;
 }
 .table-bordered {
-  border: 1px solid #f4f4f4;
+  border: 1px solid #919191;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2587,7 +2587,7 @@ a:focus {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #f4f4f4;
+  border: 1px solid #919191;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -2891,10 +2891,10 @@ table.text-center th {
   }
 }
 .modal-header {
-  border-bottom-color: #f4f4f4;
+  border-bottom-color: #919191;
 }
 .modal-footer {
-  border-top-color: #f4f4f4;
+  border-top-color: #919191;
 }
 .modal-primary .modal-header,
 .modal-primary .modal-footer {
@@ -2988,10 +2988,10 @@ table.text-center th {
   padding: 5px;
 }
 .mailbox-controls.with-border {
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #919191;
 }
 .mailbox-read-info {
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #919191;
   padding: 10px;
 }
 .mailbox-read-info h3 {
@@ -4863,7 +4863,7 @@ fieldset[disabled] .btn-yahoo.active {
 }
 .list-seperator {
   height: 1px;
-  background: #f4f4f4;
+  background: #919191;
   margin: 15px 0 9px 0;
 }
 .list-link > a {
@@ -4950,7 +4950,7 @@ fieldset[disabled] .btn-yahoo.active {
   padding: 2px;
 }
 .attachment-block {
-  border: 1px solid #f4f4f4;
+  border: 1px solid #919191;
   padding: 5px;
   margin-bottom: 10px;
   background: #f7f7f7;

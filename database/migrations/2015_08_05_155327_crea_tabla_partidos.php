@@ -15,8 +15,8 @@ class CreaTablaPartidos extends Migration
         Schema::create('partidos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('provincia')->unsigned()->index();
-            $table->foreign('provincia')->references('id')->on('provincias')->onDelete('cascade');
+            $table->integer('provincia_id')->unsigned()->index();
+            $table->foreign('provincia_id')->references('id')->on('provincias')->onDelete('cascade');
             $table->timestamps();
         });
     }

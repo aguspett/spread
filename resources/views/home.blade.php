@@ -1,17 +1,12 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">Home</div>
-
-				<div class="panel-body">
-					{{  Auth::user()->name }}
-                </div>
-			</div>
-		</div>
+       <div class="container-fluid col-md-2">
+           <img src="{{asset(Auth::user()->photo)}}" alt="{{ Auth::user()->name }}" class="pull-left img-rounded">
+       </div>
+                <h3>{{ Auth::user()->name }}</h3>
 	</div>
 </div>
 @endsection

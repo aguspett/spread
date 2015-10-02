@@ -30,7 +30,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 <body class="skin-blue sidebar-mini sidebar-collapse fixed">
 <div class="wrapper">
-
     <!-- Header -->
     @include('header')
 
@@ -60,10 +59,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </section>
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content row">
             <!-- Your Page Content Here -->
             @yield('content')
         </section><!-- /.content -->
+
     </div><!-- /.content-wrapper -->
 
 

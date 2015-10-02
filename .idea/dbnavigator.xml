@@ -22,11 +22,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="9b9bf1ff-8470-4e46-8425-2ac44ed62884">
-        <schema name="spread_electric" object-types="column, table, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="9b9bf1ff-8470-4e46-8425-2ac44ed62884">

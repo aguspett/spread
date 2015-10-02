@@ -6,7 +6,6 @@ use App\Http\Requests\PaisesRequest;
 use App\Http\Requests\PaisesShowRequest;
 use App\Repositories\Paises\PaisesRepositoryInterface;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Pais;
@@ -33,6 +32,7 @@ class paisesController extends Controller
      */
     public function index()
     {
+
         $paises_list = $this->pais->getPaisesListWithNull();
 
         return view('paises.index', compact('paises_list'));
@@ -45,7 +45,7 @@ class paisesController extends Controller
      */
     public function create()
     {
-        $paises_list = $this->pais;
+        $pais = $this->pais;
         return view('paises.create',compact('pais'));
     }
 

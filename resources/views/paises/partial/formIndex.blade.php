@@ -1,4 +1,4 @@
-<div class="col-md-4 ">
+
 <div class="box box-primary">
     <div class="box-header">
         <h3>Paises</h3>
@@ -6,7 +6,7 @@
     <div class="box-body">
 <div class="container-fluyd">
 
-{!! Form::model($paises_list,['method' => 'POST', 'action' => ['paisesController@show'],'class' =>'col-md-12'  ] ) !!}
+{!! Form::model($paises_list,['method' => 'GET', 'action' => ['paisesController@show'],'class' =>'col-md-12'  ] ) !!}
 @include('paises.partial.paisSelect')
 <div class="form-group">
     <button type="submit" class="btn btn-success pull-right">Ver</button>
@@ -14,6 +14,5 @@
 </div>
 </div>
     </div><!-- /.box-body -->
-
+@include('errors.error')
     </div>
-</div>

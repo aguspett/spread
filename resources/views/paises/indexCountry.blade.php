@@ -22,9 +22,9 @@
                             <span class=" btn-group pull-right">
 
                                  <button token="{{ csrf_token() }}" deleter="provincias" container="li" name="delete" value="{{$provincia->id}}" type="button"class="btn
-                                btn-xs  btn-warning">Elim</button>
+                                btn-xs  btn-danger"><i class="fa fa-trash"></i></button>
 
-                        <a href="{{ action('provinciasController@edit',[ $provincia->id ] ) }}" class="btn btn-xs btn-success">editar</a>
+                        <a href="{{ action('provinciasController@edit',[ $provincia->id ] ) }}" class="btn btn-xs btn-success"><i class="fa fa-pencil"></i></a>
 
                             </span>
                         </li>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClinetesTable extends Migration
+class CreateOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateClinetesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Clientes', function (Blueprint $table) {
+        Schema::create('options', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('dircom');
-            $table->unsignedInteger('localidad')->index();
-            $table->string('email')->unique();
-            $table->string('logo');
+            $table->string('uri');
+            $table->unsignedInteger('module_id');
+            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
         });
     }
 
@@ -29,7 +28,7 @@ class CreateClinetesTable extends Migration
      */
     public function down()
     {
-        Schema::table('Clientes', function (Blueprint $table) {
+        Schema::table('options', function (Blueprint $table) {
             //
         });
     }

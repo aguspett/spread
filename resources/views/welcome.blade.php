@@ -9,7 +9,7 @@
             <div class="card card-container">
                 <img src="/images/logo.png" class="profile-img-card" alt="Logo Spread">
                    <p id="profile-name" class="profile-name-card">Inicie sesión por favor</p>
-                <form class="form-signin" role="form" method="POST" action="{{ url('/auth/login') }}">
+                <form class="form-signin" role="form" method="POST" action="{{ url('/') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <span id="reauth-email" class="reauth-email"></span>
                     <input type="email" id="inputEmail" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email address" required autofocus>

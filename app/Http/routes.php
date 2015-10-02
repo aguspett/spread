@@ -10,21 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
-Route::get('/home',function (){
-    return view('home');
-});
-
-Route::resource('paises','paisesController');
-Route::post('paises/show','paisesController@show');
-    Route::get('provincias/list/{idPais}','provinciasController@provinciasList');
-Route::resource('provincias','provinciasController');
-Route::resource('partidos','partidosController');
-Route::resource('ciudades','ciudadesController');
-Route::resource('clientes','clientesController');
+// Authentication routes...
+    Route::get('/', 'Auth\AuthController@getLogin');
+    Route::get('auth/login', 'Auth\AuthController@getLogin');
+    Route::post('auth/login', 'Auth\AuthController@postLogin');
+    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+// Registration routes...
+    Route::get('auth/register', 'Auth\AuthController@getRegister');
+    Route::post('auth/register', 'Auth\AuthController@postRegister');
+    Route::get('/home','homeController@index');
+    Route::group(['prefix' => 'geo'], function() {
+        Route::resource('paises', 'paisesController');
+        Route::get('provincias/list/{idPais}', 'provinciasController@provinciasList');
+        Route::resource('provincias', 'provinciasController');
+        Route::resource('partidos', 'partidosController');
+        Route::resource('ciudades', 'ciudadesController');
+        Route::resource('clientes', 'clientesController');
+    });

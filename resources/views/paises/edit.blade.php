@@ -18,7 +18,7 @@
             </div><!-- /.box-header -->
             <div class="box-body">
     {!! Form::model($pais,['method' => 'PATCH', 'action'=> ['paisesController@update', $pais->id]]) !!}
-   @include('paises.partial.form',["submitButton" => "guardar"])
+   @include('paises.partial.form',["submitButton" => "Guardar Cambios"])
 
     {!! Form::close() !!}
 

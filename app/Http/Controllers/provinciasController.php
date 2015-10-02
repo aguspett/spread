@@ -39,13 +39,13 @@ class provinciasController extends Controller
      */
     public function show($id)
     {
-        $provincia = $this->provincia->getPartidos($id);
+        $partidos = $this->provincia->getPartidos($id);
+        $provincia= $this->provincia->getProvincia($id);
        $pais_id =  $this->provincia->getProvincia($id)->pais_id;
         list($provincias_list, $paises_list) = $this->getSelectlistsLists($pais_id);
         $pais =  $this->pais->getCountry($pais_id);
-        return view('provincias.indexProvince', compact('provincia','paises_list','provincias_list', 'pais' ));
+        return view('provincias.indexProvince', compact('provincia', 'partidos' ,'paises_list','provincias_list', 'pais' ));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -94,13 +94,11 @@ class provinciasController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(provinciasRequest $request)
+    public function update($id, provinciasRequest $request)
     {
-      $provincia = $this->provincia->update($request);
-
+        $provincia =$this->provincia->updateProvincia($id, $request);
         return redirect('/provincias/'.$provincia);
     }
-
     /**
      * Remove the specified resource from storage.
      *

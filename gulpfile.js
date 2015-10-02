@@ -24,7 +24,9 @@ var paths = {
 
 
 elixir(function(mix) {
-    mix.sass("app.scss", 'public/css');
+
+
+    mix.sass(["app.scss","_bootstrap.scss"], 'public/css');
     mix.less('resources/assets/less/admin-lte/build/less/AdminLTE.less', 'public/css/adminLTE.css')
     mix.scripts(['jquery-2.1.4.js',
         'bootstrap.min.js',

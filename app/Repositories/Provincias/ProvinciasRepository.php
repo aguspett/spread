@@ -47,9 +47,10 @@ class ProvinciasRepository implements ProvinciasRepositoryInterface
      * @param provinciasRequest $request
      * @return int  id de la provincia modificada
      */
-    public function update(provinciasRequest $request)
+    public function updateProvincia($id, ProvinciasRequest $request)
     {
-        return $this->provincia->update($request->except('_method','_token'));
+        return $this->provincia->find($id)->update($request->all());
+
     }
 
     public function deleteProvincia($id)
