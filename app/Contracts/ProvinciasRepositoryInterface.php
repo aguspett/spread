@@ -1,4 +1,4 @@
-<?php namespace App\Repositories\Provincias;
+<?php namespace App\Contracts;
 
 use App\Http\Requests\provinciasRequest;
 use App\Http\Requests\showProvinciasRequest;

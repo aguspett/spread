@@ -1,4 +1,4 @@
-<?php namespace App\Repositories\Provincias;
+<?php namespace App\Repositories;
 
 use App\Http\Requests\provinciasRequest;
 use App\Repositories\Provincias;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Ciudades;
+namespace App\Providers;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;

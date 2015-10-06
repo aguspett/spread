@@ -137,12 +137,12 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-        Orangehill\Iseed\IseedServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
+
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Repositories\Paises\PaisesServiceProvider::class ,

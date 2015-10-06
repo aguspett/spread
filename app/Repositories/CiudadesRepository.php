@@ -1,4 +1,4 @@
-<?php namespace App\Repositories\Ciudades;
+<?php namespace App\Repositories;
 
 use App\Ciudades;
 

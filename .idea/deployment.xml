@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="spreadeelctric">
+  <component name="PublishConfigData" serverName="spreadeelctric" uploadOnCheckin="8558d499-4314-4e91-9cc8-54640e69ee38">
     <serverData>
       <paths name="spreadeelctric">
         <serverdata>
@@ -10,5 +10,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="reportes" />
   </component>
 </project>

@@ -14,10 +14,17 @@ class CreateOptionsTable extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('instruction');
             $table->string('name');
-            $table->string('uri');
-            $table->unsignedInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
+            $table->text('description');
+            $table->string('icon');
+            $table->string('color');
+            $table->boolean('menuable');
+            $table->unsignedInteger('section_id');
+            $table->foreign('section_id')->references('id')
+                ->on('sections')
+                ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -28,8 +35,6 @@ class CreateOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('options', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('options');
     }
 }

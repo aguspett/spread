@@ -1,4 +1,4 @@
-<?php namespace App\Repositories\Partidos;
+<?php namespace App\Contracts;
 
 interface PartidosRepositoryInterface
 {

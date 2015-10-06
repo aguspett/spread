@@ -1,4 +1,4 @@
-<?php namespace App\Repositories\Paises;
+<?php namespace App\Repositories;
 
 use App\Http\Requests\PaisesRequest;
 use App\Http\Requests\paisesRquest;

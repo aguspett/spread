@@ -1,4 +1,4 @@
-<?php namespace App\Repositories\Ciudades;
+<?php namespace App\Contracts;
 
 interface CiudadesRepositoryInterface
 {
