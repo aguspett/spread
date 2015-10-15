@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Entities;
+<?php namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,10 +11,10 @@ class Provincia extends Model
     protected $table = 'provincias';
 
     public function pais(){
-        return $this->belongsTo('App\Repositories\Paises\Pais');
+        return $this->belongsTo('App\Entities\Paises\Pais');
             }
     public function partidos(){
-        return $this->hasMany('App\Repositories\Partidos\Partido');
+        return $this->hasMany('App\Entities\Partidos\Partido');
     }
     public function getNameAttribute($value)
     {

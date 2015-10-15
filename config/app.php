@@ -142,11 +142,9 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
-
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Repositories\Paises\PaisesServiceProvider::class ,
-        App\Repositories\Provincias\ProvinciasServiceProvider::class
+        App\Providers\GeoServiceProvider::class,
 
     ],
     /*

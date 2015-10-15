@@ -1,13 +1,11 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use App\Http\Requests\provinciasRequest;
 use App\Http\Requests\searchProvinciasRequest;
-use App\Repositories\Paises\PaisesRepositoryInterface;
-use App\Repositories\Provincias\Provincia;
-use App\Repositories\Paises\Pais;
-use App\Repositories\Provincias\ProvinciasRepositoryInterface;
+use App\Contracts\PaisesRepositoryInterface;
+use App\Entities\Provincia;
+use App\Entities\Pais;
+use App\Contracts\ProvinciasRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -23,9 +21,9 @@ class provinciasController extends Controller
     }
     public function index(){
 
-        $paises_list = $this->pais->getPaisesListWithNull();
 
-            return view('provincias.index', compact('paises_list'));
+
+            return view('provincias.index');
     }
 
     public function provinciasList($idPais){
@@ -42,9 +40,9 @@ class provinciasController extends Controller
         $partidos = $this->provincia->getPartidos($id);
         $provincia= $this->provincia->getProvincia($id);
        $pais_id =  $this->provincia->getProvincia($id)->pais_id;
-        list($provincias_list, $paises_list) = $this->getSelectlistsLists($pais_id);
+        list($provincias_list, $paises) = $this->getSelectlistsLists($pais_id);
         $pais =  $this->pais->getCountry($pais_id);
-        return view('provincias.indexProvince', compact('provincia', 'partidos' ,'paises_list','provincias_list', 'pais' ));
+        return view('provincias.indexProvince', compact('provincia', 'partidos' ,'paises','provincias_list', 'pais' ));
     }
     /**
      * Show the form for creating a new resource.
@@ -84,7 +82,7 @@ class provinciasController extends Controller
     {
         $paises_list = $this->pais->getPaisesList();
         $provincia = $this->provincia->getProvincia($id);
-       return view('provincias.edit', compact('provincia','paises_list'));
+       return view('provincias.edit', compact('provincia','paises'));
     }
 
     /**
@@ -121,7 +119,7 @@ class provinciasController extends Controller
 
         $provincias_list = $this->provincia->getProvinciasList($provinciaId);
         $paises_list = $this->pais->getPaisesListWithNull();
-        return array($provincias_list, $paises_list);
+        return array($provincias_list, $paises);
     }
 
 

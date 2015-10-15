@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PaisesRequest;
 use App\Http\Requests\PaisesShowRequest;
-use App\Repositories\Paises\PaisesRepositoryInterface;
+use App\Contracts\PaisesRepositoryInterface as paisesContract;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Pais;
+
 
 class paisesController extends Controller
 {
@@ -20,7 +20,7 @@ class paisesController extends Controller
     | eeste controlador maneja las altas bajas y modificacionde los paises
     |
     */
-    public function __construct(PaisesRepositoryInterface $pais)
+    public function __construct(paisesContract $pais)
     {
         $this->pais = $pais;
     }
@@ -33,9 +33,7 @@ class paisesController extends Controller
     public function index()
     {
 
-        $paises_list = $this->pais->getPaisesListWithNull();
-
-        return view('paises.index', compact('paises_list'));
+        return view('paises.index');
     }
 
     /**
@@ -71,9 +69,9 @@ class paisesController extends Controller
      */
     public function show(PaisesShowRequest $request  )
     {
-       $pais = $this->pais->getProvincias($request->input('paises_list'));
-       $paises_list =  $this->pais->getPaisesList();
-        return view('paises.indexCountry', compact('pais','paises_list'));
+       $pais = $this->pais->getProvincias($request->input('paises'));
+       $paises =  $this->pais->getPaisesList();
+        return view('paises.indexCountry', compact('pais','paises'));
     }
 
     /**

@@ -17,7 +17,7 @@
                 <h3>Cargar un nuevo país</h3>
             </div><!-- /.box-header -->
             <div class="box-body">
-    {!! Form::model($pais, ['url'=>'paises']) !!}
+    {!! Form::model($pais, ['action'=> 'paisesController@store']) !!}
 
     @include('paises.partial.form',["submitButton" => "Agregar pais"])
 

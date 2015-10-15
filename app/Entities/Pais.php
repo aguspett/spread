@@ -14,7 +14,7 @@ class Pais extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function provincias (){
-        return $this->hasMany('App\Repositories\Provincias\Provincia');
+        return $this->hasMany('App\Entities\Provincia');
     }
     public function createPais($request)
     {

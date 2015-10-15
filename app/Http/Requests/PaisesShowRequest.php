@@ -23,6 +23,7 @@ class PaisesShowRequest extends Request
      */
     public function rules()
     {
+
         return [
             'paises_list' => 'exists:paises,id'
         ];

@@ -18,8 +18,11 @@
 // Registration routes...
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', 'Auth\AuthController@postRegister');
-    Route::get('/home','homeController@index');
+    Route::get('/home',['as' => 'users', 'uses' => 'homeController@index'] );
+
+    Route::get('/geo',['as'=> 'geo', 'uses' =>'geoController@index']);
     Route::group(['prefix' => 'geo'], function() {
+        Route::get('/paises',['as'=>'paises', 'uses' => 'paisescontroler@index']);
         Route::resource('paises', 'paisesController');
         Route::get('provincias/list/{idPais}', 'provinciasController@provinciasList');
         Route::resource('provincias', 'provinciasController');
@@ -27,3 +30,5 @@
         Route::resource('ciudades', 'ciudadesController');
         Route::resource('clientes', 'clientesController');
     });
+
+

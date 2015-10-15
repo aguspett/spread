@@ -1,0 +1,5 @@
+@extends('app')
+
+@content
+
+@stop

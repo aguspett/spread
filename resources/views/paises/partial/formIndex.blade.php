@@ -6,7 +6,7 @@
     <div class="box-body">
 <div class="container-fluyd">
 
-{!! Form::model($paises_list,['method' => 'GET', 'action' => ['paisesController@show'],'class' =>'col-md-12'  ] ) !!}
+{!! Form::open(['method' => 'GET', 'action' => ['paisesController@show'],'class' =>'col-md-12'  ] ) !!}
 @include('paises.partial.paisSelect')
 <div class="form-group">
     <button type="submit" class="btn btn-success pull-right">Ver</button>

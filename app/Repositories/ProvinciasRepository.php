@@ -1,12 +1,12 @@
 <?php namespace App\Repositories;
 
 use App\Http\Requests\provinciasRequest;
-use App\Repositories\Provincias;
+use App\Entities\Provincia;
+use App\Contracts\ProvinciasRepositoryInterface as provinciasContract;
 
-class ProvinciasRepository implements ProvinciasRepositoryInterface
-{
+class ProvinciasRepository implements provinciasContract {
     /**
-     * Construye El pais en la propiedad pais
+     * Construye la provicias en la propiedad pais
      * @param Provincia $provincias
      */
     public function __construct( Provincia $provincias)

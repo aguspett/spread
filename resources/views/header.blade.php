@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo"><b>SPR</b></a>
+    <a href="/home" class="logo"><b>SPR</b></a>
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -10,6 +10,7 @@
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
+        @include('partials.menu')
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
 

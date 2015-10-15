@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use Authenticatable,Authorizable, CanResetPassword,HasRoles;
+    use Authenticatable,Authorizable, CanResetPassword, SoftDeletes;
 
 
     /**
@@ -56,5 +59,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             $complete_route = $complete_route.'user.jpg';
         }
         return $complete_route;
+    }
+    public function canAccess()
+    {
+        return $this->belongsToMany('App\Entities\Section', 'userAcessSections');
+    }
+    public function treeAccess()
+    {
+        return $this->canAccess()->where('parent_id','=',null)->where('user_id','=',$this->id)->with('subsections');
     }
 }

@@ -2,7 +2,8 @@
 
 use App\Http\Requests\PaisesRequest;
 use App\Http\Requests\paisesRquest;
-
+use App\Contracts\PaisesRepositoryInterface;
+use App\Entities\Pais;  
 class PaisesRepository implements PaisesRepositoryInterface
 {
 
