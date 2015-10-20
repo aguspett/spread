@@ -1,5 +1,5 @@
-       <a href="{{route($item->instruction)}}"> <i class="{{$item->icon}}"> </i> <span>{{$item->name}} </span>
-       @if (isset($carret))
+ <a href="{{action($item->section->instruction)}}"> <i class="{{$item->section->icon}}"> </i> <span>{{$item->section->name}} </span>
+  @if (isset($carret))
            {!! $carret !!}
        @endif
        </a>

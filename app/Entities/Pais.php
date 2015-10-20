@@ -13,27 +13,36 @@ class Pais extends Model
      * un pais tiene muchas provincias
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function provincias (){
+    public function provincias(
+    )
+    {
         return $this->hasMany('App\Entities\Provincia');
     }
-    public function createPais($request)
-    {
+
+    public function createPais(
+        $request
+    ) {
         $pais = $this->save($request);
         return $pais;
     }
 
-    public function setNameAttribute($value)
-    {
-       return $this->attributes['name'] = strtolower($value);
-    }
-    public function getNameAttribute($value)
-    {
-       return $this->attributes['name'] = ucfirst($value);
+    public function setNameAttribute(
+        $value
+    ) {
+        return $this->attributes['name'] = strtolower($value);
     }
 
-    public function getNameListAtribute()
+    public function getNameAttribute(
+        $value
+    ) {
+        return $this->attributes['name'] = ucfirst($value);
+    }
+
+    public function getNameListAtribute(
+    )
     {
-        return $this->lists('id','name');
+        return $this->lists('id',
+            'name');
     }
 
 }

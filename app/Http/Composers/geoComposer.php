@@ -11,18 +11,21 @@ namespace app\Http\Composers;
 
 use App\Contracts\PaisesRepositoryInterface;
 use App\Contracts\ProvinciasRepositoryInterface;
-use App\Http\Controllers\provinciasController;
-use Illuminate\Support\Facades\View;
 
 class geoComposer
 {
-    public function __construct(PaisesRepositoryInterface $pais, ProvinciasRepositoryInterface $provincia )
-    {
+    public function __construct(
+        PaisesRepositoryInterface $pais,
+        ProvinciasRepositoryInterface $provincia
+    ) {
         $this->pais = $pais;
         $this->provincia = $provincia;
     }
-    public function PaisSelect($view)
-    {
-        $view->with('paises',$this->pais->getPaisesListWithNull());
+
+    public function PaisSelect(
+        $view
+    ) {
+        $view->with('paises',
+            $this->pais->getPaisesListWithNull());
     }
 }

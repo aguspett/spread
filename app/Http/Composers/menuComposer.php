@@ -9,46 +9,58 @@
 namespace app\Http\Composers;
 
 
-
 use App\Entities\Section;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 
 class menuComposer
 {
-    public function __construct(Section $section)
-    {
+    public function __construct(
+        Section $section
+    ) {
         $this->section = $section;
         $this->setRouteName();
     }
 
-    public function compose($view)
-    {
-       if ($this->routeIsSection()){
-           dump($this->routeName);
-       }
-        else {
+    public function compose(
+        $view
+    ) {
+        if ($this->routeIsSection()) {
 
+            $view->with(['menusection' => Auth::user()]);
+
+        } else {
+            return $this->routeName;
         }
     }
 
-    public function setRouteName()
+    public function setRouteName(
+    )
     {
 
-   $this->routeName = Request::route()->getName();
+        $action = Request::route()->getAction();
+        $controller = str_replace($action["namespace"] . '\\',
+            '',
+            $action['controller']);
+        $this->routeName = $controller;
     }
 
-    public function routeIsSection()
+    public function routeIsSection(
+    )
     {
-       return count($this->seachSection())? true:false ;
+        return count($this->seachSection()) ? true : false;
 
     }
 
     /**
      * @return mixed
      */
-    public function seachSection()
+    public function seachSection(
+    )
     {
-        return $this->section->where('instruction', '=', $this->routeName)->first();
+        return $this->section->where('instruction',
+            '=',
+            $this->routeName)->first();
     }
 }

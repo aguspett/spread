@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class provinciasRequest extends Request
 {
     /**
@@ -11,7 +9,8 @@ class provinciasRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(
+    )
     {
         return true;
     }
@@ -21,13 +20,14 @@ class provinciasRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(
+    )
     {
 
         return [
-            'name'=> 'required|unique:paises|min:3',
-            'pais_id'=>'exists:paises,id'
-            ];
+            'name' => 'required|unique:paises|min:3',
+            'pais_id' => 'exists:paises,id'
+        ];
 
     }
 }

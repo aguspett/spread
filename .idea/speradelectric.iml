@@ -15,7 +15,6 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser/lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/phpspec/phpspec" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/monolog/monolog/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/monolog/monolog/tests" isTestSource="true" />
@@ -40,6 +39,7 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector/lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

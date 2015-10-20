@@ -1,49 +1,66 @@
 <?php namespace App\Http\Controllers;
 
+use App\Contracts\PaisesRepositoryInterface;
+use App\Contracts\ProvinciasRepositoryInterface;
+use App\Entities\Pais;
+use App\Entities\Provincia;
+use App\Http\Requests;
 use App\Http\Requests\provinciasRequest;
 use App\Http\Requests\searchProvinciasRequest;
-use App\Contracts\PaisesRepositoryInterface;
-use App\Entities\Provincia;
-use App\Entities\Pais;
-use App\Contracts\ProvinciasRepositoryInterface;
-use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\App;
 use App\Http\Requests\showProvinciasRequest;
+use Illuminate\Http\Request;
 
 class provinciasController extends Controller
 {
-    public function __construct(PaisesRepositoryInterface $pais, ProvinciasRepositoryInterface $porvincia)
-    {
+    public function __construct(
+        PaisesRepositoryInterface $pais,
+        ProvinciasRepositoryInterface $porvincia
+    ) {
         $this->pais = $pais;
         $this->provincia = $porvincia;
     }
-    public function index(){
 
 
-
-            return view('provincias.index');
+    public function index(
+        $paisId
+    ) {
+        $provincias = $this->provincia->getAll($paisId)->paginate(15);
+        return view('provincias.index',
+            compact('provincias'));
     }
 
-    public function provinciasList($idPais){
-        return $this->provincia->getProvinciasList($idPais);
+    /**
+     * @param $idPais
+     * @return mixed
+     */
+    public function getList(
+        $idPais
+    ) {
+        return $this->provincia->getList($idPais);
     }
-   /**
+
+    /**
      * Muestra provincias para un pais
      *
      * @param showProvinciasRequest $request
      * @return vista de provincias de un pais
      */
-    public function show($id)
-    {
+    public function show(
+        $id
+    ) {
         $partidos = $this->provincia->getPartidos($id);
-        $provincia= $this->provincia->getProvincia($id);
-       $pais_id =  $this->provincia->getProvincia($id)->pais_id;
+        $provincia = $this->provincia->getProvincia($id);
+        $pais_id = $this->provincia->getProvincia($id)->pais_id;
         list($provincias_list, $paises) = $this->getSelectlistsLists($pais_id);
-        $pais =  $this->pais->getCountry($pais_id);
-        return view('provincias.indexProvince', compact('provincia', 'partidos' ,'paises','provincias_list', 'pais' ));
+        $pais = $this->pais->getCountry($pais_id);
+        return view('provincias.indexProvince',
+            compact('provincia',
+                'partidos',
+                'paises',
+                'provincias_list',
+                'pais'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,60 +68,77 @@ class provinciasController extends Controller
      * @param Provincia $provincia
      * @return Response
      */
-    public function create(Pais $pais, Provincia $provincia)
-    {
-        $paises = $pais::all()->lists('name','id');
-        return view('provincias.create', compact('paises','provincia','seccion','opcion'));
+    public function create(
+        Pais $pais,
+        Provincia $provincia
+    ) {
+        $paises = $pais::all()->lists('name',
+            'id');
+        return view('provincias.create',
+            compact('paises',
+                'provincia',
+                'seccion',
+                'opcion'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  Request $request
      * @return Response
      */
-    public function store(provinciasRequest $request)
-    {
+    public function store(
+        provinciasRequest $request
+    ) {
 
         Provincia::create($request->all());
-        return redirect('paises/'.$request->input('pais_id'));
+        return redirect('paises/' . $request->input('pais_id'));
     }
-
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function edit($id)
-    {
-        $paises_list = $this->pais->getPaisesList();
-        $provincia = $this->provincia->getProvincia($id);
-       return view('provincias.edit', compact('provincia','paises'));
+    public function edit(
+        $paisId,
+        $provinciaId
+    ) {
+        $provincia = $this->provincia->getProvincia($provinciaId);
+        return view('provincias.edit',
+            compact('provincia',
+                'paisId'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param  Request $request
+     * @param  int $id
      * @return Response
      */
-    public function update($id, provinciasRequest $request)
-    {
-        $provincia =$this->provincia->updateProvincia($id, $request);
-        return redirect('/provincias/'.$provincia);
+    public function update(
+        $paisId,
+        $provinciaId,
+        provinciasRequest $request
+    ) {
+        $provincia = $this->provincia->updateProvincia($provinciaId,
+            $request);
+        return redirect(action('provinciasController@index',
+            ["paisId" => $paisId]));
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy(
+        $id
+    ) {
 
     }
 
@@ -114,12 +148,13 @@ class provinciasController extends Controller
      * @return array
      *
      */
-   private function getSelectlistsLists($provinciaId)
-    {
+    private function getSelectlistsLists(
+        $provinciaId
+    ) {
 
-        $provincias_list = $this->provincia->getProvinciasList($provinciaId);
-        $paises_list = $this->pais->getPaisesListWithNull();
-        return array($provincias_list, $paises);
+        $provincias_list = $this->provincia->List($provinciaId);
+
+        return array($provincias_list);
     }
 
 

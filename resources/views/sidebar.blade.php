@@ -23,7 +23,8 @@
             <li class="header">Opciones</li>
             <!-- Optionally, you can add icons to the links -->
             @if (Auth::check())
-            @include('partials.section',array('items' => $items))
+
+            @include('partials.section',array('items' => $items, "ul" => 'treeview-menu'))
             @endif
         </ul><!-- /.sidebar-menu -->
     </section>

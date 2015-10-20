@@ -8,19 +8,31 @@ class Section extends Model
 {
 
 
-    public function subsections()
+    public function subsections(
+    )
     {
-        return $this->hasMany('App\Entities\Section','parent_id');
+        return $this->hasMany('App\Entities\Section',
+            'parent_id');
 
     }
 
-    public function parent()
+    public function parent(
+    )
     {
-        return $this->belongsTo('App\Entities\section','parent_id');
+        return $this->belongsTo('App\Entities\section',
+            'parent_id');
     }
 
-    public function users()
+    public function option(
+    )
     {
-        return $this->belongsToMany('App\Entities\User','userAcessSections');
+        return $this->hasMany('App\Entities\Option');
+    }
+
+    public function users(
+    )
+    {
+        return $this->belongsToMany('App\Entities\User',
+            'userAcessSections');
     }
 }

@@ -2,7 +2,8 @@
 
 interface CiudadesRepositoryInterface
 {
-    
-    public function getAll();
+
+    public function getAll(
+    );
 
 }

@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class PaisesRequest extends Request
 {
     /**
@@ -11,7 +9,8 @@ class PaisesRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(
+    )
     {
         return true;
     }
@@ -21,7 +20,8 @@ class PaisesRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(
+    )
     {
 
         return [

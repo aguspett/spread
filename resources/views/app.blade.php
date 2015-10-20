@@ -56,10 +56,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
                 <li class="active">Here</li>
             </ol>
+            @include('partials.menu')
         </section>
 
         <!-- Main content -->
         <section class="content row">
+
             <!-- Your Page Content Here -->
             @yield('content')
 
@@ -107,11 +109,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             type: "GET",
                             dataType: 'json',
                             success: function (data) {
+
                                 fillSelect(data,fillable);
                             }
                         });
                     }
-                    function deleter (element){
+                        function deleter (element){
+
                        var url = '/'+$(element).attr('deleter')+'/'+$(element).val();
                         $.ajax({
                             url: url,

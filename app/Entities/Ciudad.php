@@ -8,7 +8,8 @@ class Ciudad extends Model
 {
     protected $table = 'ciudades';
 
-    public function partido()
+    public function partido(
+    )
     {
         return $this->belongsTo('App\Partido');
     }

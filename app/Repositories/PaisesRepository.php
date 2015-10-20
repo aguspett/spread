@@ -1,9 +1,10 @@
 <?php namespace App\Repositories;
 
+use App\Contracts\PaisesRepositoryInterface;
+use App\Entities\Pais;
 use App\Http\Requests\PaisesRequest;
 use App\Http\Requests\paisesRquest;
-use App\Contracts\PaisesRepositoryInterface;
-use App\Entities\Pais;  
+
 class PaisesRepository implements PaisesRepositoryInterface
 {
 
@@ -11,8 +12,9 @@ class PaisesRepository implements PaisesRepositoryInterface
      * Construye El pais en la propiedad pais
      * @param Pais $pais
      */
-    public function __construct( Pais $pais)
-    {
+    public function __construct(
+        Pais $pais
+    ) {
         $this->pais = $pais;
     }
 
@@ -21,9 +23,10 @@ class PaisesRepository implements PaisesRepositoryInterface
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      *
      */
-    public function getAll()
+    public function getAll(
+    )
     {
-       return $this->pais->all();
+        return $this->pais->all();
     }
 
     /**
@@ -31,27 +34,32 @@ class PaisesRepository implements PaisesRepositoryInterface
      *
      * @return mixed
      */
-    public function getPaisesListWithNull()
+    public function getPaisesListWithNull(
+    )
     {
-        $array =$this->pais->lists('name','id');
+        $array = $this->pais->lists('name',
+            'id');
         $array->prepend('-');
-       return  $array;
-
+        return $array;
 
 
     }
 
-    public function getPaisesList()
+    public function getPaisesList(
+    )
     {
-        return $this->pais->lists('name','id');
+        return $this->pais->lists('name',
+            'id');
     }
+
     /**
      * obtiener el pais
      * @param $id
      * @return mixed
      */
-    public function getCountry($id)
-    {
+    public function getCountry(
+        $id
+    ) {
         return $this->pais->find($id);
     }
 
@@ -60,11 +68,12 @@ class PaisesRepository implements PaisesRepositoryInterface
      * @param $id
      * @return mixed
      */
-    public function getProvincias($id)
-    {
+    public function getProvincias(
+        $id
+    ) {
 
         $pais = $this->pais->find($id);
-        $pais->provincias;
+        dd($id);
         return $pais;
     }
 
@@ -73,9 +82,11 @@ class PaisesRepository implements PaisesRepositoryInterface
      * @param PaisesRequest $request
      * @return bool
      */
-    public function create (PaisesRequest $request){
+    public function create(
+        PaisesRequest $request
+    ) {
 
-      return $this->pais->create($request->all()) ;
+        return $this->pais->create($request->all());
 
     }
 
@@ -86,18 +97,21 @@ class PaisesRepository implements PaisesRepositoryInterface
      * @return bool
      * @internal param PaisesRequest $rquest
      */
-    public function updatePais($id, PaisesRequest $request)
-    {
-      $this->pais->find($id)->update($request->all());
+    public function updatePais(
+        $id,
+        PaisesRequest $request
+    ) {
+        $this->pais->find($id)->update($request->all());
         return $this->pais;
-   }
+    }
 
     /**
      * borra un pais
      * @param $id
      */
-    public function deletePais($id)
-    {
-       return $this->pais->destroy($id);
+    public function deletePais(
+        $id
+    ) {
+        return $this->pais->destroy($id);
     }
 }

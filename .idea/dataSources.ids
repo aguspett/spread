@@ -1971,6 +1971,23 @@
       <column name="CURRENT_CONNECTIONS" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="TOTAL_CONNECTIONS" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
     </table>
+    <table name="accesses" schema="" catalog="spread_electric" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="section_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="parent_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="accesses_parent_id_foreign" columns="parent_id" ref-table="accesses" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="accesses_section_id_foreign" columns="section_id" ref-table="sections" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="accesses_user_id_foreign" columns="user_id" ref-table="users" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="accesses_parent_id_foreign" table="accesses" schema="" catalog="spread_electric" columns="parent_id"/>
+      <exported-key name="permissions_access_id_foreign" table="permissions" schema="" catalog="spread_electric" columns="access_id"/>
+      <index name="accesses_parent_id_foreign" unique="false" columns="parent_id"/>
+      <index name="accesses_section_id_foreign" unique="false" columns="section_id"/>
+      <index name="accesses_user_id_foreign" unique="false" columns="user_id"/>
+    </table>
     <table name="ciudades" schema="" catalog="spread_electric" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -2014,7 +2031,7 @@
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="options_section_id_foreign" columns="section_id" ref-table="sections" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
-      <exported-key name="accesssectionspermission_option_id_foreign" table="permissions" schema="" catalog="spread_electric" columns="option_id"/>
+      <exported-key name="permissions_option_id_foreign" table="permissions" schema="" catalog="spread_electric" columns="option_id"/>
       <index name="options_section_id_foreign" unique="false" columns="section_id"/>
     </table>
     <table name="paises" schema="" catalog="spread_electric" type="TABLE">
@@ -2049,10 +2066,10 @@
       <column name="option_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
-      <foreign-key name="accesssectionspermission_access_id_foreign" columns="access_id" ref-table="userAcessSections" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
-      <foreign-key name="accesssectionspermission_option_id_foreign" columns="option_id" ref-table="options" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
-      <index name="accesssectionspermission_access_id_foreign" unique="false" columns="access_id"/>
-      <index name="accesssectionspermission_option_id_foreign" unique="false" columns="option_id"/>
+      <foreign-key name="permissions_access_id_foreign" columns="access_id" ref-table="accesses" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="permissions_option_id_foreign" columns="option_id" ref-table="options" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="permissions_access_id_foreign" unique="false" columns="access_id"/>
+      <index name="permissions_option_id_foreign" unique="false" columns="option_id"/>
     </table>
     <table name="provincias" schema="" catalog="spread_electric" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -2077,23 +2094,10 @@
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="sections_parent_id_foreign" columns="parent_id" ref-table="sections" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="accesses_section_id_foreign" table="accesses" schema="" catalog="spread_electric" columns="section_id"/>
       <exported-key name="options_section_id_foreign" table="options" schema="" catalog="spread_electric" columns="section_id"/>
       <exported-key name="sections_parent_id_foreign" table="sections" schema="" catalog="spread_electric" columns="parent_id"/>
-      <exported-key name="useracesssections_section_id_foreign" table="userAcessSections" schema="" catalog="spread_electric" columns="section_id"/>
       <index name="sections_parent_id_foreign" unique="false" columns="parent_id"/>
-    </table>
-    <table name="userAcessSections" schema="" catalog="spread_electric" type="TABLE">
-      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="user_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="section_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
-      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="useracesssections_section_id_foreign" columns="section_id" ref-table="sections" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
-      <foreign-key name="useracesssections_user_id_foreign" columns="user_id" ref-table="users" ref-schema="" ref-catalog="spread_electric" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
-      <exported-key name="accesssectionspermission_access_id_foreign" table="permissions" schema="" catalog="spread_electric" columns="access_id"/>
-      <index name="useracesssections_section_id_foreign" unique="false" columns="section_id"/>
-      <index name="useracesssections_user_id_foreign" unique="false" columns="user_id"/>
     </table>
     <table name="users" schema="" catalog="spread_electric" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -2101,11 +2105,12 @@
       <column name="photo" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="password" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="remember_token" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="useracesssections_user_id_foreign" table="userAcessSections" schema="" catalog="spread_electric" columns="user_id"/>
+      <exported-key name="accesses_user_id_foreign" table="accesses" schema="" catalog="spread_electric" columns="user_id"/>
       <index name="users_email_unique" unique="true" columns="email"/>
     </table>
   </data-source>

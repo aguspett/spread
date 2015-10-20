@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccessSectionPermitionTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateAccessSectionPermitionTable extends Migration
      */
     public function up()
     {
-        Schema::create('accessSectionsPermission', function (Blueprint $table) {
+        Schema::create('Permissions', function (Blueprint $table) {
             $table->unsignedInteger('access_id');
             $table->unsignedInteger('option_id');
             $table->foreign('access_id')->references('id')
-                ->on('userAcessSections')
+                ->on('Accesses')
                 ->onDelete('cascade');
             $table->foreign('option_id')->references('id')
                 ->on('options')
@@ -32,6 +32,6 @@ class CreateAccessSectionPermitionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('accessSectionsPermission');
+        Schema::drop('Permissions');
     }
 }

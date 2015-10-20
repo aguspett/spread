@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\PaisesRepositoryInterface as paisesContract;
+use App\Http\Requests;
 use App\Http\Requests\PaisesRequest;
 use App\Http\Requests\PaisesShowRequest;
-use App\Contracts\PaisesRepositoryInterface as paisesContract;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 
 class paisesController extends Controller
@@ -20,8 +19,9 @@ class paisesController extends Controller
     | eeste controlador maneja las altas bajas y modificacionde los paises
     |
     */
-    public function __construct(paisesContract $pais)
-    {
+    public function __construct(
+        paisesContract $pais
+    ) {
         $this->pais = $pais;
     }
 
@@ -30,7 +30,8 @@ class paisesController extends Controller
      *
      * @return vista del index de paises
      */
-    public function index()
+    public function index(
+    )
     {
 
         return view('paises.index');
@@ -41,23 +42,26 @@ class paisesController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(
+    )
     {
         $pais = $this->pais;
-        return view('paises.create',compact('pais'));
+        return view('paises.create',
+            compact('pais'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PaisesRequest  $request
+     * @param  PaisesRequest $request
      * @return Response
      */
-    public function store(PaisesRequest $request)
-    {
+    public function store(
+        PaisesRequest $request
+    ) {
         $this->pais->create($request);
         //flash()->overlay('El país ha sido agragado','Exito');
-        return redirect ('paises');
+        return redirect('paises');
     }
 
     /**
@@ -67,11 +71,15 @@ class paisesController extends Controller
      * @return Response
      * @internal param int $id
      */
-    public function show(PaisesShowRequest $request  )
-    {
-       $pais = $this->pais->getProvincias($request->input('paises'));
-       $paises =  $this->pais->getPaisesList();
-        return view('paises.indexCountry', compact('pais','paises'));
+    public function show(
+        PaisesShowRequest $request
+    ) {
+        dd($request);
+        $pais = $this->pais->getProvincias($request->input('paises'));
+        $paises = $this->pais->getPaisesList();
+        return view('paises.indexCountry',
+            compact('pais',
+                'paises'));
     }
 
     /**
@@ -82,10 +90,12 @@ class paisesController extends Controller
      * @return Response
      * @internal param int Paises $pais
      */
-    public function edit($id)
-    {
+    public function edit(
+        $id
+    ) {
         $pais = $this->pais->getCountry($id);
-        return view('paises.edit', compact('pais'));
+        return view('paises.edit',
+            compact('pais'));
     }
 
     /**
@@ -95,12 +105,16 @@ class paisesController extends Controller
      * @return Response
      * @internal param Paises $int $pais
      */
-    public function update($id,PaisesRequest $request )
-    {
+    public function update(
+        $id,
+        PaisesRequest $request
+    ) {
 
-        $pais = $this->pais->updatePais($id, $request);
+        $pais = $this->pais->updatePais($id,
+            $request);
 
-        return redirect()->action('paisesController@index', $pais->id);
+        return redirect()->action('paisesController@index',
+            $pais->id);
     }
 
     /**
@@ -109,8 +123,9 @@ class paisesController extends Controller
      * @param  int  Paises $pais
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy(
+        $id
+    ) {
         $this->pais->deletePais($id);
         return redirect('paises');
     }

@@ -13,21 +13,28 @@
 <div class="box-footer clearfix no-border">
           @include('errors.error')
         </div>
+
 </div><!-- /.box -->
 
 @section('jscript')
     <script>
+        var url = '{{url('geo/provincias/list')}}' +'/';
 
         $().ready( function (){
-            getLIstForSelect($('#paises'), '/provincias/list/', $('#provincias'));
+            if ($('#paises').val() != 0){
+                $('#paises').trigger("change");
+            }
+            getLIstForSelect($('#paises'),url, $('#provincias'));
         })
         $('#paises').change(function () {
             $('#provincias').empty();
-            getLIstForSelect($('#paises'), '/provincias/list/', $('#provincias'));
+            getLIstForSelect($('#paises'), url, $('#provincias'));
+
         });
         $('#viewProvince').click(function (){
-            var url = '/provincias/'+$('#provincias').val();
+            var url = '/provincia/'+$('#provincias').val();
             $(location).attr("href", url);
         });
+
     </script>
 @stop

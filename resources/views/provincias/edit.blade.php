@@ -7,7 +7,9 @@
     <h1>Editar: {!! $provincia->name !!}</h1>
             </div><!-- /.box-header -->
             <div class="box-body">
-    {!! Form::model($provincia,['method' => 'PATCH', 'action'=> ['provinciasController@update', $provincia->id]]) !!}
+
+
+    {!! Form::model($provincia,['method' => 'PATCH', 'action'=> ['provinciasController@update',  $provincia->pais->id, $provincia->id ] ]) !!}
    @include('provincias.partial.form',["submitButton" => "Guardar Cambios"])
             </div><!-- /.box-header -->
             <div class="box-body">

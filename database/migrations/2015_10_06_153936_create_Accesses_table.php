@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserAccessSectionsTable extends Migration
+class CreateAccessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,22 @@ class CreateUserAccessSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('userAcessSections', function (Blueprint $table) {
+        Schema::create('Accesses', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('section_id');
-            $table->foreign('section_id')->references('id')
+            $table->unsignedInteger('parent_id')->nullable();
+            $table->foreign('section_id')
+                ->references('id')
                 ->on('sections')
                 ->onDelete('cascade');
-            $table->foreign('user_id')->references('id')
+            $table->foreign('user_id')
+                ->references('id')
                 ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('Accesses')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -33,6 +40,6 @@ class CreateUserAccessSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('userAcessSections');
+        Schema::drop('Accesses');
     }
 }

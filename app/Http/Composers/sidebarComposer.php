@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class sidebarComposer
 {
-    public function compose($view)
-    {
-        $view->with(['items' => Auth::user()->treeAccess]);
+    public function compose(
+        $view
+    ) {
+        if (Auth::check()) {
+            $view->with(['items' => Auth::user()->mainMenu]);
+        }
     }
 }

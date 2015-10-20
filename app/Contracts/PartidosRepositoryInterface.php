@@ -2,7 +2,8 @@
 
 interface PartidosRepositoryInterface
 {
-    
-    public function getAll();
+
+    public function getAll(
+    );
 
 }

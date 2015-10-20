@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -19,13 +19,15 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
-    public function boot(Router $router)
-    {
+    public function boot(
+        Router $router
+    ) {
         //
-        $router->pattern('id', '[0-9]+');
+        $router->pattern('id',
+            '[0-9]+');
 
         parent::boot($router);
     }
@@ -33,14 +35,18 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
-    public function map(Router $router)
-    {
-        $router->group(['namespace' => $this->namespace], function ($router) {
-            require app_path('Http/routes.php');
-        });
+    public function map(
+        Router $router
+    ) {
+        $router->group(['namespace' => $this->namespace],
+            function (
+                $router
+            ) {
+                require app_path('Http/routes.php');
+            });
 
     }
 }

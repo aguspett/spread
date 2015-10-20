@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Entities\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 
 class AuthController extends Controller
@@ -30,42 +30,53 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+    )
     {
-        $this->middleware('guest', ['except' => ['getLogout', 'getRegister', 'postRegister']]);
+        $this->middleware('guest',
+            [
+                'except' => [
+                    'getLogout',
+                    'getRegister',
+                    'postRegister'
+                ]
+            ]);
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(
+        array $data
+    ) {
 
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        return Validator::make($data,
+            [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|confirmed|min:6',
+            ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
-    protected function create(Request $data)
-    {
+    protected function create(
+        Request $data
+    ) {
 
         $image = User::uploadUserImage($data);
 
         return User::create([
             'name' => $data->input('name'),
             'email' => $data->input('email'),
-            'photo'=> $image,
+            'photo' => $image,
             'password' => bcrypt($data['password']),
         ]);
     }

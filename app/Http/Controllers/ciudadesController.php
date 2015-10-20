@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ciudadesController extends Controller
 {
@@ -14,7 +12,8 @@ class ciudadesController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(
+    )
     {
         //
     }
@@ -24,7 +23,8 @@ class ciudadesController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(
+    )
     {
         //
     }
@@ -32,56 +32,62 @@ class ciudadesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
-    {
+    public function store(
+        Request $request
+    ) {
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function show($id)
-    {
+    public function show(
+        $id
+    ) {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit(
+        $id
+    ) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param  Request $request
+     * @param  int $id
      * @return Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(
+        Request $request,
+        $id
+    ) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy(
+        $id
+    ) {
         //
     }
 }

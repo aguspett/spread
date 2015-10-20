@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class showProvinciasRequest extends Request
 {
     /**
@@ -11,7 +9,8 @@ class showProvinciasRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(
+    )
     {
         return true;
     }
@@ -21,11 +20,12 @@ class showProvinciasRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(
+    )
     {
-             return [
+        return [
             'paises_list' => "exists:paises,id",
-            'provincias_list'=> "exists:provincias,id"
+            'provincias_list' => "exists:provincias,id"
         ];
     }
 }
