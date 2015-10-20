@@ -6,6 +6,9 @@ use App\Http\Requests\provinciasRequest;
 
 class ProvinciasRepository implements provinciasContract
 {
+
+    public $parentKeyName = 'pais_id';
+    public $childName = 'partidos';
     /**
      * Construye la provicias en la propiedad pais
      * @param Provincia $provincias
@@ -13,21 +16,58 @@ class ProvinciasRepository implements provinciasContract
     public function __construct(
         Provincia $provincias
     ) {
-        $this->provincia = $provincias;
+        $this->model = $provincias;
     }
+    /**
+     * @return string
+     */
+
+    public function getParentKeyName(
+    )
+    {
+        return $this->parentKeyName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChildName(
+    )
+    {
+        return $this->childName;
+    }
+    /**
+     * @param null $parentKeyName
+     * @return ProvinciasRepository
+     */
+    public function setParentKeyName(
+        $parentKeyName
+    ) {
+        $this->parentKeyName = $parentKeyName;
+    }
+
+    /**
+     * @param null $childName
+     * @return ProvinciasRepository
+     */
+    public function setChildName(
+        $childName
+    ) {
+        $this->childName = $childName;
+    }
+
 
     public function getAll(
-        $id_pais
+      $id
     ) {
-        return $this->provincia->where('pais_id',
-            $id_pais);
+        return $this->model->where($this->getParentKeyName(),
+            $id);
     }
 
-    public function getList(
-        $id_pais
+    public function getList( $id
     ) {
-        $array = $this->provincia->where('pais_id',
-            $id_pais)->get()->lists('name',
+        $array = $this->model->where($this->parentKeyName,
+            $id)->get()->lists('name',
             'id');
         $array->prepend('-')->toJson();
         return $array;
@@ -37,20 +77,22 @@ class ProvinciasRepository implements provinciasContract
     public function getProvincia(
         $id
     ) {
-        return $this->provincia->find($id);
+        return $this->model->find($id);
     }
 
     public function getPartidos(
         $id
     ) {
-        $partidos = $this->provincia->find($id)->partidos()->orderBy('name')->paginate(15);
-        return $partidos;
+        return $this->getChilds('partidos',$id);
     }
 
-    public function create(
+    public function create($parentFormInputName,
         provinciasRequest $request
     ) {
-        // TODO: Implement create() method.
+        $parentKeyName = $this->getParentKeyName();
+        $this->model->name = $request->input('name');
+        $this->model->$parentKeyName = $request->input($parentFormInputName);
+        $this->model->save();
     }
 
     /**
@@ -61,7 +103,7 @@ class ProvinciasRepository implements provinciasContract
         $id,
         ProvinciasRequest $request
     ) {
-        return $this->provincia->find($id)->update($request->all());
+        return $this->model->find($id)->update($request->all());
 
     }
 
@@ -69,5 +111,13 @@ class ProvinciasRepository implements provinciasContract
         $id
     ) {
         // TODO: Implement deleteProvincia() method.
+    }
+
+    public function getChilds(
+
+    $id
+    ) {
+        $childName = $this->getChildName();
+        $this->model->find($id)->$childName()->orderBy('name');
     }
 }

@@ -6,11 +6,11 @@ interface ProvinciasRepositoryInterface
 {
 
     public function getAll(
-        $id_pais
+         $id
     );
 
     public function getList(
-        $id_pais
+      $id
     );
 
     public function getProvincia(
@@ -21,7 +21,7 @@ interface ProvinciasRepositoryInterface
         $id
     );
 
-    public function create(
+    public function create($parentFormInputName,
         provinciasRequest $request
     );
 

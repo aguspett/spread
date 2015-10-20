@@ -20,7 +20,14 @@ class provinciasController extends Controller
         $this->provincia = $porvincia;
     }
 
-
+    public function search(
+        Request $request
+    ) {
+        if (!($request->isMethod("GET"))){
+            return response()->redirectToAction('provinciasController@index', $request->input('paises'));
+        }
+        return view('provincias.search');
+}
     public function index(
         $paisId
     ) {
@@ -29,15 +36,6 @@ class provinciasController extends Controller
             compact('provincias'));
     }
 
-    /**
-     * @param $idPais
-     * @return mixed
-     */
-    public function getList(
-        $idPais
-    ) {
-        return $this->provincia->getList($idPais);
-    }
 
     /**
      * Muestra provincias para un pais
@@ -48,17 +46,6 @@ class provinciasController extends Controller
     public function show(
         $id
     ) {
-        $partidos = $this->provincia->getPartidos($id);
-        $provincia = $this->provincia->getProvincia($id);
-        $pais_id = $this->provincia->getProvincia($id)->pais_id;
-        list($provincias_list, $paises) = $this->getSelectlistsLists($pais_id);
-        $pais = $this->pais->getCountry($pais_id);
-        return view('provincias.indexProvince',
-            compact('provincia',
-                'partidos',
-                'paises',
-                'provincias_list',
-                'pais'));
     }
 
     /**
@@ -69,16 +56,10 @@ class provinciasController extends Controller
      * @return Response
      */
     public function create(
-        Pais $pais,
-        Provincia $provincia
+       $paisId
     ) {
-        $paises = $pais::all()->lists('name',
-            'id');
         return view('provincias.create',
-            compact('paises',
-                'provincia',
-                'seccion',
-                'opcion'));
+            compact('paisId'));
     }
 
     /**
@@ -88,11 +69,12 @@ class provinciasController extends Controller
      * @return Response
      */
     public function store(
+        $paisId,
         provinciasRequest $request
     ) {
 
-        Provincia::create($request->all());
-        return redirect('paises/' . $request->input('pais_id'));
+      $this->provincia->create('paises', $request);
+        return response()->redirectToAction('provinciasController@index', $paisId);
     }
 
 

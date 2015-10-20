@@ -7,7 +7,7 @@
 <div class="container-fluyd">
 
 {!! Form::open(['method' => 'GET', 'action' => ['paisesController@show'],'class' =>'col-md-12'  ] ) !!}
-@include('paises.partial.paisSelect')
+@include('geo.paises.partial.paisSelect')
 <div class="form-group">
     <button type="submit" class="btn btn-success pull-right">Ver</button>
     {!! Form::close() !!}

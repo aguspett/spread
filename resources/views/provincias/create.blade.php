@@ -18,7 +18,7 @@
         <div class="box-header">
     <h1>Cargar una nueva provincia</h1>
     <hr>
-    {!! Form::model($provincia , ['url'=>'provincias']) !!}
+    {!! Form::open( ['method' => 'POST', 'action'=> ['provinciasController@update',  $paisId ] ]) !!}
 
     @include('provincias.partial.form',["submitButton" => "Agregar provinca"])
 

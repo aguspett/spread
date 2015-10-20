@@ -2,7 +2,7 @@
 
 @section('content')
 
-         @include('paises.partial.formIndex')
+         @include('geo.paises.partial.formIndex')
 
         <div class="col-md-12">
         <div class="box box-primary">

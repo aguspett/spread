@@ -4,10 +4,9 @@
             <h3>Buscar provincia de:</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-{!! Form::open(['method' => 'get', 'action'=> 'provinciasController@show', 'class' =>'form']) !!}
-@include('paises.partial.paisSelect')
-@include('provincias.partial.provinciasSelect')
-<button type="button" id="viewProvince" class="btn btn-success pull-right">Ver</button>
+{!! Form::open(['method' => 'Post', 'action'=> 'provinciasController@search', 'class' =>'form']) !!}
+@include('geo.paises.partial.paisSelect')
+<button type="submit"  class="btn btn-success pull-right">Ver</button>
             {!! Form::close() !!}
 </div><!-- /.box-body -->
 <div class="box-footer clearfix no-border">
@@ -18,7 +17,7 @@
 
 @section('jscript')
     <script>
-        var url = '{{url('geo/provincias/list')}}' +'/';
+
 
         $().ready( function (){
             if ($('#paises').val() != 0){
@@ -31,10 +30,5 @@
             getLIstForSelect($('#paises'), url, $('#provincias'));
 
         });
-        $('#viewProvince').click(function (){
-            var url = '/provincia/'+$('#provincias').val();
-            $(location).attr("href", url);
-        });
-
     </script>
 @stop

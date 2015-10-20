@@ -2,6 +2,6 @@
 
 @section('content')
      <section class="content">
-            @include('paises.partial.formIndex')
+            @include('geo.paises.partial.formIndex')
     </section>
 @stop
